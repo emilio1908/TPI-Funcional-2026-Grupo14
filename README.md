@@ -1,6 +1,6 @@
 # TPI-Funcional-2026-Grupo14
 
-Trabajo Practico Integrador - Lenguaje Asignado: Clojure 
+📌 *Trabajo Practico Integrador - Lenguaje Asignado: Clojure*
 
 ## Integrantes del grupo
 
@@ -11,3 +11,11 @@ Trabajo Practico Integrador - Lenguaje Asignado: Clojure
 | Bonessi, Luis Maria               |                                              |
 | Rojas, Ruth                       |                                              |
 | Frias, Juan Gabriel               |                                              |
+
+## Estado 
+🔨 *Aún en proceso...* 
+
+## 🔗 Links de enlace 
+- 📝 Informe Técnico Analítico: [`docs/Informe.md`](docs/Informe.md)
+
+- 🔴 (VIDEO YOUTUBE) Demo Tecnica: ...
