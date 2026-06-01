@@ -1,3 +1,5 @@
+<img width="1920" height="1080" alt="TPI-Funcional-2026 Grupo 14 Lenguaje Asignado" src="https://github.com/user-attachments/assets/87d1504b-cb50-48af-a528-c9ecf2ae787a" />
+
 # TPI-Funcional-2026-Grupo14
 
 📌 *Trabajo Practico Integrador - Lenguaje Asignado: Clojure*
@@ -19,3 +21,5 @@
 - 📝 Informe Técnico Analítico: [`docs/Informe.md`](docs/Informe.md)
 
 - 🔴 (VIDEO YOUTUBE) Demo Tecnica: ...
+
+
