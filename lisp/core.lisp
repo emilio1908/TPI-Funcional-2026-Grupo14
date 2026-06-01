@@ -1,9 +1,29 @@
+
+;;; TRABAJO PRACTICO INTEGRADOR - GRUPO 14 - TEMA RELACIONADO: "Sistema de semaforos Inteligentes"
+;;; ========================================================
+;;; Restricciones de Diseño e Implementación:
+
+;;; 1_ Inmutabilidad absoluta: *Sin variables globales mutables (defparameter, defvar)
+;;;                            *Sin operadores destructivos (setq, setf)
+
+;;; 2_ Cero bucles imperativos: *No se permite (loop, dolist, dotimes, while)
+;;; ========================================================
+
+
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Contexto del Problema:
 ; Las ciudades modernas requieren sistemas de tráfico inteligentes para optimizar el flujo vehicular y garantizar la seguridad vial. Su equipo ha sido contratado para desarrollar 
 ; el núcleo lógico de un sistema embebido que controlará semáforos en intersecciones críticas de la ciudad. El mismo fue implementado en Common Lisp.
 
 ; Requerimiento 1: Estados de Transición
 ; Implemente la función transicion que modele el cambio de estados del semáforo.
+
+;; ========================================================
+;; FUNCIÓN: transicion
+;; NATURALEZA: ...
+;; ESTRATEGIA: ...
+;; IMPACTO: ...
+;; ========================================================
 
 (defun transicion()
  cuerpo...
@@ -14,7 +34,14 @@
 ; Para la implementación de un actuador que realizará el cambio de luces se necesita implementar un mecanismo automatizado de temporización. Se solicita implementar una función Timer, 
 ; que recibirá el tiempo actual en formato tiempo Unix (o tiempo epoch). Desarrolle la función timer para automatizar las transiciones basadas en tiempo Unix.
 
-(defun timer()
+;; ========================================================
+;; FUNCIÓN: timer
+;; NATURALEZA: Pura (Dado un timestamp, siempre retorna el mismo color)
+;; ESTRATEGIA: Orden Superior (Implementada mediante mapcar y reduce)
+;; IMPACTO: No destructiva
+;; ========================================================
+
+(defun timer(timestamp)
   cuerpo...
 )
 
@@ -23,6 +50,13 @@
 ; El equipo de analistas forenses necesita poder determinar qué color tenía una luz a determinada hora. Se necesita implementar un mecanismo de registro de los diferentes cambios de 
 ; estado de las luces durante la ejecución del programa. Se ha solicitado que para la versión actual se implemente una función que imprima en la terminal de ejecución el cambio de 
 ; estados del semáforo. Implemente un mecanismo de logging para análisis forense de tráfico.
+
+;; ========================================================
+;; FUNCIÓN: registro_de_estados
+;; NATURALEZA: ...
+;; ESTRATEGIA: ...
+;; IMPACTO: ...
+;; ========================================================
 
 (defun registro_de_estados()
   cuerpo...
@@ -36,9 +70,23 @@
 ; tendrá cada ciclo con las reglas de negocio actuales y una funcion de recomendacion sobre la duración del ciclo. Desarrolle funciones para análisis de eficiencia del sistema:
 ; a) Funcion duracion-ciclo y b) Funcion recomendacion-ciclo
 
+;; ========================================================
+;; FUNCIÓN: duracion-ciclo
+;; NATURALEZA: ...
+;; ESTRATEGIA: ...
+;; IMPACTO: ...
+;; ========================================================
+
 (defun duracion-ciclo()
   cuerpo...
 )
+
+;; ========================================================
+;; FUNCIÓN: recomendacion-ciclo
+;; NATURALEZA: ...
+;; ESTRATEGIA: ...
+;; IMPACTO: ...
+;; ========================================================
 
 (defun recomendacion-ciclo()
   cuerpo...
@@ -49,6 +97,13 @@
 ; Para la coordinación y planificación de la vía se necesita calcular cuantos ciclos se completan en determinada cantidad de minutos, por ejemplo en 15 minutos; se requiere una función 
 ; ciclos-por-tiempo que calcule la cantidad de ciclos incluidos en ese tiempo.
 
+;; ========================================================
+;; FUNCIÓN: ciclos-por-tiempo
+;; NATURALEZA: ...
+;; ESTRATEGIA: ...
+;; IMPACTO: ...
+;; ========================================================
+
 (defun ciclos-por-tiempo()
   cuerpo...
 )
@@ -57,6 +112,13 @@
 ; Requerimiento 6: Informe de Distribución Temporal
 ; Por cuestiones de planificación logística, se necesita un informe que indique el porcentaje de cada color que se tendrá en 1 hora. Dadas ciertas reglas de negocios o según las actuales. 
 ; Desarrolle una función que calcule la distribución porcentual de cada color en períodos de 1 hora
+
+;; ========================================================
+;; FUNCIÓN: distribucion_porcentual
+;; NATURALEZA: ...
+;; ESTRATEGIA: ...
+;; IMPACTO: ...
+;; ========================================================
 
 (defun distribucion_porcentual()
   cuerpo...
@@ -68,7 +130,6 @@
 ; caminos alternativos (si los hubiere) y ejemplos que generan errores. A sabiendas de que el equipo ejecutará lo indicado, copiando y pegando.
 
 ejemplos...
-
 
 
 
