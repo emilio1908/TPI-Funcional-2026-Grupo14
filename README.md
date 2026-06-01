@@ -1,6 +1,6 @@
 # TPI-Funcional-2026-Grupo14
 
-trabajo integrador
+Trabajo Practico Integrador - Lenguaje Asignado: Clojure 
 
 ## Integrantes del grupo
 
