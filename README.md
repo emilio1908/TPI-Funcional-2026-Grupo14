@@ -4,11 +4,11 @@
 
 | Nombre y Apellido                 | Usuario de GitHub   |
 |-----------------------------------|-----------------------|
-| Gaitan Pereyra, Julio Emilio      | [@emilio1908](https://github.com/emilio1908) |
-| Gabaldo Zdanovicz, Matias Nahuel  |                                              |
-| Bonessi, Luis Maria               |                                              |
-| Rojas, Ruth                       |                                              |
-| Frias, Juan Gabriel               |                                              |
+| Gaitan Pereyra, Julio Emilio      | [emilio1908](https://github.com/emilio1908) |
+| Gabaldo Zdanovicz, Matias Nahuel  | Inactivo                                             |
+| Bonessi, Luis Maria               | [luismabonessi](https://github.com/luismabonessi) |
+| Rojas, Ruth                       | [rmilagrosrojas22-art](https://github.com/rmilagrosrojas22-art) |
+| Frias, Juan Gabriel               | Inactivo                                             |
 
 # TPI-Funcional-2026-Grupo14
 
@@ -24,19 +24,19 @@ Las ciudades modernas requieren sistemas de tráfico inteligentes para optimizar
 
 ## 🔻 Consigna Básica 
 Se debera implementar la lógica de control urbano para el "Sistema de semáforos inteligentes", teniendo en cuenta 7 requerimientos:
-1. *Estados de Transición:* Implementar una función que modele el cambio de estados de color del semáforo.
+1. **`Estados de Transición:`** Implementar una función que modele el cambio de estados de color del semáforo.
 
-2. *Temporizador Automático:* Desarrollar una función para automatizar la temporización (transiciones entre colores) basadas en tiempo Unix (o tiempo epoch).
+2. **`Temporizador Automático:`** Desarrollar una función para automatizar la temporización (transiciones entre colores) basadas en tiempo Unix (o tiempo epoch).
 
-3. *Sistema de Auditoría:* Se necesita implementar un mecanismo de registro-logging de los diferentes cambios de estado de las luces durante la ejecución del programa.
+3. **`Sistema de Auditoría:`** Se necesita implementar un mecanismo de registro-logging de los diferentes cambios de estado de las luces durante la ejecución del programa.
 
-4. *Análisis de Ciclos Semafóricos:* Se solicita implementar una función que calcule la duración que tendrá cada ciclo con las reglas de negocio actuales y otra función de recomendación sobre la duración del ciclo.
+4. **`Análisis de Ciclos Semafóricos:`** Se solicita implementar una función que calcule la duración que tendrá cada ciclo con las reglas de negocio actuales y otra función de recomendación sobre la duración del ciclo.
 
-5. *Planificación Temporal:* Se requiere una función que calcule la cantidaad de ciclos incluidos en determinada cantidad de minutos.
+5. **`Planificación Temporal:`** Se requiere una función que calcule la cantidaad de ciclos incluidos en determinada cantidad de minutos.
 
-6. *Informe de Distribución Temporal:* Desarrollar una función que calcule la distribucón porcentual de cada color en períodos de 1 hora.
+6. **`Informe de Distribución Temporal:`** Desarrollar una función que calcule la distribucón porcentual de cada color en períodos de 1 hora.
 
-7. *Aseguramiento de la calidad:* Para cada uno de los requerimientos anteriores se debe proveer ejemplos de uso que demuestren el funcionamiento normal.
+7. **`Aseguramiento de la calidad:`** Para cada uno de los requerimientos anteriores se debe proveer ejemplos de uso que demuestren el funcionamiento normal.
 
 ## 🔎 Estado Actual: NO TERMINADO
 👨‍💻 *Aún en proceso. (Organizando tareas y preparando la resolucion de la consigna en codigo LISP)* 
