@@ -1,5 +1,20 @@
+;;;; 
+***************************************************
+;;;; Fichero: core.lisp 
+;;;; Fecha-de-creación: 01/06/2026 
+;;;; Proyeco: TRABAJO PRACTICO INTEGRADOR
+;;;; Comentarios: Este fichero corresponde al desarrollo de un "Sistema de Semáforos Inteligentes". 
+;;;; Grupo de trabajo: #14
+;;;; Integrantes:
+;;;;   - Gaitán Pereyra, Julio Emilio 
+;;;;   - Gabaldo Zdanovicz, Matias Nahuel 
+;;;;   - Bonessi, Luis Maria
+;;;;   - Rojas, Ruth
+;;;;   - Frias, Juan Gabriel
+;;;;  Universidad Nacional del Nordeste (UNNE)
+;;;; 
+***************************************************
 
-;;; TRABAJO PRACTICO INTEGRADOR - GRUPO 14 - TEMA RELACIONADO: "Sistema de semaforos Inteligentes"
 ;;; ========================================================
 ;;; Restricciones de Diseño e Implementación:
 
