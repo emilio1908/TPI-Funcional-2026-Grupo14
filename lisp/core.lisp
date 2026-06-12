@@ -35,14 +35,17 @@
 
 ;; ========================================================
 ;; FUNCIÓN: transicion
-;; NATURALEZA: ...
-;; ESTRATEGIA: ...
-;; IMPACTO: ...
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Evaluación de transiciones mediante cond
+;; IMPACTO: No destructiva
 ;; ========================================================
 
-(defun transicion()
- cuerpo...
-)
+(defun transicion (color-actual cambiar-a)
+(cond 
+((and (equal  color-actual 'en-rojo) (equal  cambiar-a 'verde)) (list color-actual  "Cambiar-a-verde"))
+((and (equal  color-actual 'en-amarillo) (equal  cambiar-a 'rojo )) (list color-actual "Cambiar-a-rojo"))
+((and  (equal  color-actual 'en-verde) (equal  cambiar-a 'amarillo )) (list color-actual "Cambiar-a-amarillo"))
+(t (list color-actual "Accion-por-defecto"))))
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 2: Temporizador Automático
@@ -51,14 +54,18 @@
 
 ;; ========================================================
 ;; FUNCIÓN: timer
-;; NATURALEZA: Pura (Dado un timestamp, siempre retorna el mismo color)
-;; ESTRATEGIA: Orden Superior (Implementada mediante mapcar y reduce)
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Condicional mediante cond
 ;; IMPACTO: No destructiva
 ;; ========================================================
 
-(defun timer(timestamp)
-  cuerpo...
-)
+(EN-ROJO "Accion-por-defecto")
+Break 1 [3]> (defun timer (timestamp)
+(let ((segundo-ciclo (mod timestamp 216)))
+(cond 
+((< segundo-ciclo 90) 'en-rojo)
+((< segundo-ciclo 96) 'en-amarillo)
+(t 'en-verde))))
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 3: Sistema de Auditoría
@@ -67,15 +74,18 @@
 ; estados del semáforo. Implemente un mecanismo de logging para análisis forense de tráfico.
 
 ;; ========================================================
-;; FUNCIÓN: registro_de_estados
-;; NATURALEZA: ...
-;; ESTRATEGIA: ...
-;; IMPACTO: ...
+;; FUNCIÓN: registro-de-estados
+;; NATURALEZA: Impura
+;; ESTRATEGIA: Impresión mediante format
+;; IMPACTO: No destructiva
 ;; ========================================================
 
-(defun registro_de_estados()
-  cuerpo...
-)
+(defun registro-de-estados (timestamp color-anterior color-nuevo)
+  (format t
+          "Tiempo ~A: la luz ha cambiado de ~A a ~A~%"
+          timestamp
+          color-anterior
+          color-nuevo))
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 4: Análisis de Ciclos Semafóricos
