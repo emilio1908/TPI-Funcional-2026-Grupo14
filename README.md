@@ -5,7 +5,7 @@
 | Nombre y Apellido                 | Usuario de GitHub   |
 |-----------------------------------|-----------------------|
 | Gaitan Pereyra, Julio Emilio      | [emilio1908](https://github.com/emilio1908) |
-| Gabaldo Zdanovicz, Matias Nahuel  | Inactivo                                             |
+| Gabaldo Zdanovicz, Matias Nahuel  | [zeedthegreat](https://github.com/zeedthegreat) |
 | Bonessi, Luis Maria               | [luismabonessi](https://github.com/luismabonessi) |
 | Rojas, Ruth                       | [rmilagrosrojas22-art](https://github.com/rmilagrosrojas22-art) |
 | Frias, Juan Gabriel               | Inactivo                                             |
