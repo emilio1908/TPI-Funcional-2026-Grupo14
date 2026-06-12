@@ -140,13 +140,21 @@ Break 1 [3]> (defun timer (timestamp)
 
 ;; ========================================================
 ;; FUNCIÓN: distribucion_porcentual
-;; NATURALEZA: ...
-;; ESTRATEGIA: ...
-;; IMPACTO: ...
+;; NATURALEZA: Pura (dadas las mismas duraciones por color, siempre retorna la misma distribución porcentual).
+;; ESTRATEGIA: Orden Superior (mapcar aplicado sobre la lista de duraciones).
+;; IMPACTO: No destructiva 
 ;; ========================================================
 
-(defun distribucion_porcentual()
-  cuerpo...
+(defun distribucion_porcentual (duracion-rojo duracion-amarillo duracion-verde)
+  (let* ((total (duracion-ciclo duracion-rojo duracion-amarillo duracion-verde))
+         (duraciones (list duracion-rojo duracion-amarillo duracion-verde))
+         (porcentajes (mapcar (lambda (d) (* (/ d (float total)) 100)) duraciones)))
+    (list
+      (list 'en-rojo     (first porcentajes))
+      (list 'en-amarillo (second porcentajes))
+      (list 'en-verde    (third porcentajes))
+    )
+  )
 )
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
