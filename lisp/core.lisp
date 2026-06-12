@@ -97,24 +97,33 @@ Break 1 [3]> (defun timer (timestamp)
 
 ;; ========================================================
 ;; FUNCIÓN: duracion-ciclo
-;; NATURALEZA: ...
-;; ESTRATEGIA: ...
-;; IMPACTO: ...
+;; NATURALEZA: Pura (depende solo de los parámetros de entrada, no modifica estado)
+;; ESTRATEGIA: Uso de let para definir duración total del ciclo y floor para calcular ciclos completos
+;; IMPACTO: No destructiva (retorna lista con número de ciclos y recomendación, no altera variables globales)
 ;; ========================================================
 
-(defun duracion-ciclo()
-  cuerpo...
-)
+(defun duracion-ciclo (segundos)
+  (let ((duracion-ciclo-total (+ 90 6 120)))
+    (list (floor segundos duracion-ciclo-total) ; número de ciclos completos sobre el total del ciclo 
+          (recomendacion-ciclo segundos) ; recomendación sobre la duración
+    )
+  )
+)     
+
 
 ;; ========================================================
 ;; FUNCIÓN: recomendacion-ciclo
-;; NATURALEZA: ...
-;; ESTRATEGIA: ...
-;; IMPACTO: ...
+;; NATURALEZA: Pura (depende solo del parámetro de entrada, no modifica estado)
+;; ESTRATEGIA: Condicional con verificación de tipo (integerp) y rangos
+;; IMPACTO: No destructiva (retorna lista con evaluación y recomendación, no altera variables globales)
 ;; ========================================================
 
-(defun recomendacion-ciclo()
-  cuerpo...
+(defun recomendacion-ciclo (duracion)
+  (cond
+    ((and (integerp duracion) (< duracion 35)) (list "Rango NO-optimo:" 'ciclo-corto "recomendacion:" 'aumentar-duracion))
+    ((and (integerp duracion) (> duracion 150)) (list "Rango NO-optimo:" 'ciclo-largo "recomendacion:" 'aumentar-duracion))
+    ((integerp duracion) (list "Rango Optimo" "recomendacion:" 'Ninguna))
+  )
 )
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -124,13 +133,17 @@ Break 1 [3]> (defun timer (timestamp)
 
 ;; ========================================================
 ;; FUNCIÓN: ciclos-por-tiempo
-;; NATURALEZA: ...
-;; ESTRATEGIA: ...
-;; IMPACTO: ...
+;; NATURALEZA: Pura (depende solo de los parámetros de entrada, no modifica estado)
+;; ESTRATEGIA: Conversión de minutos a segundos y división entera con floor
+;; IMPACTO: No destructiva (retorna número de ciclos completos, no altera variables globales)
 ;; ========================================================
 
-(defun ciclos-por-tiempo()
-  cuerpo...
+(defun ciclos-por-tiempo(minutos)
+  (let ((duracion-ciclo-total (+ 90 6 120)
+    (if (integerp minutos)
+      (list (floor (* 324 60) duracion-ciclo-total))
+    )
+  )
 )
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
