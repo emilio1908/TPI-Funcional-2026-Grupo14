@@ -139,10 +139,8 @@ Break 1 [3]> (defun timer (timestamp)
 ;; ========================================================
 
 (defun ciclos-por-tiempo(minutos)
-  (let ((duracion-ciclo-total (+ 90 6 120)
-    (if (integerp minutos)
-      (list (floor (* 324 60) duracion-ciclo-total))
-    )
+  (let ((duracion-ciclo-total (+ 90 6 120)))
+      (list (floor (* minutos 60) duracion-ciclo-total))
   )
 )
 
