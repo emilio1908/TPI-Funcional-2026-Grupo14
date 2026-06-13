@@ -147,26 +147,24 @@ Break 1 [3]> (defun timer (timestamp)
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 6: Informe de Distribución Temporal
 ; Por cuestiones de planificación logística, se necesita un informe que indique el porcentaje de cada color que se tendrá en 1 hora. Dadas ciertas reglas de negocios o según las actuales. 
-; Desarrolle una función que calcule la distribución porcentual de cada color en períodos de 1 hora
+; Desarrolle una función que calcule la distribución porcentual de cada color en períodos de 1 
 
-;; ========================================================
-;; FUNCIÓN: distribucion_porcentual
-;; NATURALEZA: Pura (dadas las mismas duraciones por color, siempre retorna la misma distribución porcentual).
-;; ESTRATEGIA: Orden Superior (mapcar aplicado sobre la lista de duraciones).
-;; IMPACTO: No destructiva 
-;; ========================================================
+================≈===================================================================
 
 (defun distribucion_porcentual (duracion-rojo duracion-amarillo duracion-verde)
-  (let* ((total (duracion-ciclo duracion-rojo duracion-amarillo duracion-verde))
-         (duraciones (list duracion-rojo duracion-amarillo duracion-verde))
-         (porcentajes (mapcar (lambda (d) (* (/ d (float total)) 100)) duraciones)))
+  (let* ((total (+ duracion-rojo
+                   duracion-amarillo
+                   duracion-verde))
+         (porcentajes
+          (mapcar (lambda (d)
+                    (* (/ d (float total)) 100))
+                  (list duracion-rojo
+                        duracion-amarillo
+                        duracion-verde))))
     (list
       (list 'en-rojo     (first porcentajes))
       (list 'en-amarillo (second porcentajes))
-      (list 'en-verde    (third porcentajes))
-    )
-  )
-)
+      (list 'en-verde    (third porcentajes)))))
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 7: Aseguramiento de la calidad
