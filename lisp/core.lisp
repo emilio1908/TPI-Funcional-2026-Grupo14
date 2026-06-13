@@ -268,7 +268,19 @@ ejemplos...
 ;;; valor devuelto  -> *** - *: TRESCIENTOSTREINTA is not a number
 
 
+;;; ========== REQUERIMIENTO 6: distribucion_porcentual ==========
 
+;;; Funcionamiento NORMAL:
+;;; valor ingresado -> (distribucion_porcentual 90 6 120)
+;;; valor devuelto  -> ((EN-ROJO 41.666664) (EN-AMARILLO 2.7777777) (EN-VERDE 55.55556))
+
+;;; Funcionamiento con camino ALTERNATIVO:
+;;; valor ingresado -> (distribucion_porcentual 72 72 72)
+;;; valor devuelto  -> ((EN-ROJO 33.333332) (EN-AMARILLO 33.333332) (EN-VERDE 33.333332))
+
+;;; Caso de ejemplo de ERROR:
+;;; valor ingresado -> (distribucion_porcentual 0 0 0)
+;;; valor devuelto  -> *** - DIVISION-BY-ZERO
 
 
 
