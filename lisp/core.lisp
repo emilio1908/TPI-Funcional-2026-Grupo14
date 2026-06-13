@@ -175,7 +175,81 @@ Break 1 [3]> (defun timer (timestamp)
 
 ejemplos...
 
+;;; ========== REQUERIMIENTO 1: transicion ==========
 
+;;; Funcionamiento NORMAL:
+;;; valor ingresado -> (transicion 'en-rojo 'verde)
+;;; valor devuelto  -> (EN-ROJO "Cambiar-a-verde")
+
+;;; valor ingresado -> (transicion 'en-amarillo 'rojo)
+;;; valor devuelto  -> (EN-AMARILLO "Cambiar-a-rojo")
+
+;;; valor ingresado -> (transicion 'en-verde 'amarillo)
+;;; valor devuelto  -> (EN-VERDE "Cambiar-a-amarillo")
+
+;;; Funcionamiento con camino ALTERNATIVO:
+;;; valor ingresado -> (transicion 'amarillo 'rojo)
+;;; valor devuelto  -> (AMARILLO "Accion-por-defecto")
+
+;;; Caso de ejemplo de ERROR:
+;;; valor ingresado -> (transicion 'en-rojo)
+;;; valor devuelto  -> *** - invalid number of arguments: 1
+
+
+;;; ========== REQUERIMIENTO 2: timer ==========
+
+;;; Funcionamiento NORMAL:
+;;; valor ingresado -> (timer 1000)
+;;; valor devuelto  -> EN-VERDE
+
+;;; valor ingresado -> (timer 216)
+;;; valor devuelto  -> EN-ROJO
+
+;;; Funcionamiento con camino ALTERNATIVO:
+;;; valor ingresado -> (timer 95)
+;;; valor devuelto  -> EN-AMARILLO
+
+;;; Caso de ejemplo de ERROR:
+;;; valor ingresado -> (timer hola)
+;;; valor devuelto  -> *** - SYSTEM::READ-EVAL-PRINT: variable HOLA has no value
+
+
+;;; ========== REQUERIMIENTO 3: registrar-cambio ==========
+
+;;; Funcionamiento NORMAL:
+;;; valor ingresado -> (registrar-cambio 90 'en-rojo 'en-verde)
+;;; valor devuelto  -> Tiempo 90: la luz ha cambiado de EN-ROJO a EN-VERDE
+
+;;; Funcionamiento con camino ALTERNATIVO:
+;;; valor ingresado -> (registrar-cambio 10000 'en-rojo 'en-verde)
+;;; valor devuelto  -> Tiempo 10000: la luz ha cambiado de EN-ROJO a EN-VERDE
+
+;;; valor ingresado -> (registrar-cambio 90.5 'en-rojo 'en-verde)
+;;; valor devuelto  -> Tiempo 90.5: la luz ha cambiado de EN-ROJO a EN-VERDE
+
+;;; Caso de ejemplo de ERROR / LIMITE:
+;;; valor ingresado -> (registrar-cambio -10 'en-rojo 'en-verde)
+;;; valor devuelto  -> Tiempo -10: la luz ha cambiado de EN-ROJO a EN-VERDE
+;;; (no produce error, pero un timestamp negativo no tiene sentido en el dominio)
+
+;;; valor ingresado -> (registrar-cambio 100 nil 'en-verde)
+;;; valor devuelto  -> Tiempo 100: la luz ha cambiado de NIL a EN-VERDE
+;;; (no produce error, pero NIL como "color anterior" es semánticamente inválido)
+
+
+;;; ========== REQUERIMIENTO 5: ciclos-por-tiempo ==========
+
+;;; Funcionamiento NORMAL:
+;;; valor ingresado -> (ciclos-por-tiempo 32)
+;;; valor devuelto  -> 8
+
+;;; Funcionamiento con camino ALTERNATIVO:
+;;; valor ingresado -> (ciclos-por-tiempo 50.05)
+;;; valor devuelto  -> 13
+
+;;; Caso de ejemplo de ERROR:
+;;; valor ingresado -> (ciclos-por-tiempo 'trescientostreinta)
+;;; valor devuelto  -> *** - *: TRESCIENTOSTREINTA is not a number
 
 
 
