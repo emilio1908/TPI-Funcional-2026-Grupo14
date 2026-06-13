@@ -239,6 +239,19 @@ ejemplos...
 ;;; valor devuelto  -> Tiempo 100: la luz ha cambiado de NIL a EN-VERDE
 ;;; (no produce error, pero NIL como "color anterior" es semánticamente inválido)
 
+;;; ========== REQUERIMIENTO 4: duracion-ciclo / recomendacion-ciclo ==========
+
+;;; Funcionamiento NORMAL:
+;;; valor ingresado -> (duracion-ciclo 32747)
+;;; valor devuelto  -> (151 ("Rango NO-optimo:" CICLO-LARGO "recomendacion:" AUMENTAR-DURACION))
+
+;;; Funcionamiento con camino ALTERNATIVO:
+;;; valor ingresado -> (duracion-ciclo 3172.3)
+;;; valor devuelto  -> (14 NIL)
+
+;;; Caso de ejemplo de ERROR:
+;;; valor ingresado -> (duracion-ciclo 'treintaycuatro)
+;;; valor devuelto  -> *** - FLOOR: TREINTAYCUATRO is not a real number
 
 ;;; ========== REQUERIMIENTO 5: ciclos-por-tiempo ==========
 
