@@ -149,8 +149,13 @@ Break 1 [3]> (defun timer (timestamp)
 ; Por cuestiones de planificación logística, se necesita un informe que indique el porcentaje de cada color que se tendrá en 1 hora. Dadas ciertas reglas de negocios o según las actuales. 
 ; Desarrolle una función que calcule la distribución porcentual de cada color en períodos de 1 
 
-================≈===================================================================
 
+;; ========================================================
+;; FUNCIÓN: distribucion_porcentual
+;; NATURALEZA: Pura (dadas las mismas duraciones de entrada, siempre retorna la misma distribución porcentual)
+;; ESTRATEGIA: Orden Superior (mapcar aplicado sobre la lista de duraciones)
+;; IMPACTO: No destructiva
+;; ========================================================
 (defun distribucion_porcentual (duracion-rojo duracion-amarillo duracion-verde)
   (let* ((total (+ duracion-rojo
                    duracion-amarillo
