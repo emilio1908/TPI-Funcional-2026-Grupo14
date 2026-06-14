@@ -80,10 +80,23 @@ Break 1 [3]> (defun timer (timestamp)
 ;; IMPACTO: No destructiva
 ;; ========================================================
 
-(defun registro-de-estados (timestamp color-anterior color-nuevo)
+(defun registro-de-estados (color-anterior color-nuevo)
   (format t
-          "Tiempo ~A: la luz ha cambiado de ~A a ~A~%"
-          timestamp
+          "[~A] la luz ha cambiado de ~A a ~A~%"
+          (local-time:format-timestring
+           nil
+           (local-time:now)
+           :format '((:year 4)
+                     "-"
+                     (:month 2)
+                     "-"
+                     (:day 2)
+                     " "
+                     (:hour 2)
+                     ":"
+                     (:min 2)
+                     ":"
+                     (:sec 2)))
           color-anterior
           color-nuevo))
 
