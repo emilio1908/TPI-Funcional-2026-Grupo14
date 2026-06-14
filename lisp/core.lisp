@@ -301,5 +301,173 @@ ejemplos...
 ;;; valor devuelto  -> *** - DIVISION-BY-ZERO
 
 
+-----------------------------------------------------
+******************** ITERACION 2 ********************
+-----------------------------------------------------
+
+; Requerimiento 1: Estados de Transición
+
+;; ========================================================
+;; FUNCIÓN: transicion
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Evaluación de transiciones mediante cond
+;; IMPACTO: No destructiva
+;; ========================================================
+
+(defun transicion (color-actual cambiar-a)
+  (cond
+    ((and (equal  color-actual 'en-rojo) (equal  cambiar-a 'intermitente)) (list color-actual  "intermitente"))
+
+    ((and (equal  color-actual 'intermitente) (equal  cambiar-a 'verde)) (list color-actual  "Cambiar-a-verde"))
+
+    ((and (equal  color-actual 'en-verde) (equal  cambiar-a 'intermitente )) (list color-actual "intermitente"))
+
+    ((and (equal  color-actual 'intermitente) (equal  cambiar-a 'amarillo )) (list color-actual "Cambiar-a-amarillo"))
+
+    ((and (equal  color-actual 'en-amarillo) (equal  cambiar-a 'intermitente )) (list color-actual "intermitente"))
+
+    ((and (equal  color-actual 'intermitente) (equal  cambiar-a 'rojo )) (list color-actual "Cambiar-a-rojo"))
+
+    (t (list color-actual "Accion-por-defecto"))
+  )
+)
+
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Requerimiento 2: Temporizador Automático
+
+;; ========================================================
+;; FUNCIÓN: timer
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Condicional mediante cond
+;; IMPACTO: No destructiva
+;; ========================================================
+
+(defun timer (timestamp)
+  (let ((segundo-ciclo (mod timestamp 225)))
+    (cond 
+      ((<= segundo-ciclo 90) 'en-rojo)
+      ((<= segundo-ciclo 93) 'intermitente)
+      ((<= segundo-ciclo 213) 'en-verde)
+      ((<= segundo-ciclo 216) 'intermitente)
+      ((<= segundo-ciclo 222) 'en-amarillo)
+      (t 'intermitente)
+    )
+  )
+)
+
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Requerimiento 3: Sistema de Auditoría
+
+;; ========================================================
+;; FUNCIÓN: registro-de-estados
+;; NATURALEZA: Impura
+;; ESTRATEGIA: Impresión mediante format
+;; IMPACTO: No destructiva
+;; ========================================================
+
+(defun registro-de-estados (color-anterior color-nuevo)
+  (format t
+          "[~A] la luz ha cambiado de ~A a ~A~%"
+          (local-time:format-timestring
+           nil
+           (local-time:now)
+           :format '((:year 4)
+                     "-"
+                     (:month 2)
+                     "-"
+                     (:day 2)
+                     " "
+                     (:hour 2)
+                     ":"
+                     (:min 2)
+                     ":"
+                     (:sec 2)))
+          color-anterior
+          color-nuevo
+  )
+)
+
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Requerimiento 4: Análisis de Ciclos Semafóricos
+
+;; ========================================================
+;; FUNCIÓN: duracion-ciclo
+;; NATURALEZA: Pura (depende solo de los parámetros de entrada, no modifica estado)
+;; ESTRATEGIA: Uso de let para definir duración total del ciclo y floor para calcular ciclos completos
+;; IMPACTO: No destructiva (retorna lista con número de ciclos y recomendación, no altera variables globales)
+;; ========================================================
+
+(defun duracion-ciclo (segundos)
+  (let ((duracion-ciclo-total (+ 90 6 120 9))) ; ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg - INTERMITENCIA: 9s
+    (list (floor segundos duracion-ciclo-total) ; número de ciclos completos sobre el total del ciclo 
+          (recomendacion-ciclo segundos) ; recomendación sobre la duración
+    )
+  )
+)     
+
+;; ========================================================
+;; FUNCIÓN: recomendacion-ciclo
+;; NATURALEZA: Pura (depende solo del parámetro de entrada, no modifica estado)
+;; ESTRATEGIA: Condicional con verificación de tipo (integerp) y rangos
+;; IMPACTO: No destructiva (retorna lista con evaluación y recomendación, no altera variables globales)
+;; ========================================================
+
+(defun recomendacion-ciclo (duracion)
+  (cond
+    ((and (integerp duracion) (< duracion 35)) (list "Rango NO-optimo:" 'ciclo-corto "recomendacion:" 'aumentar-duracion))
+    ((and (integerp duracion) (> duracion 150)) (list "Rango NO-optimo:" 'ciclo-largo "recomendacion:" 'aumentar-duracion))
+    ((integerp duracion) (list "Rango Optimo" "recomendacion:" 'Ninguna))
+  )
+)
+
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Requerimiento 5: Planificación Temporal
+
+;; ========================================================
+;; FUNCIÓN: ciclos-por-tiempo
+;; NATURALEZA: Pura (depende solo de los parámetros de entrada, no modifica estado)
+;; ESTRATEGIA: Conversión de minutos a segundos y división entera con floor
+;; IMPACTO: No destructiva (retorna número de ciclos completos, no altera variables globales)
+;; ========================================================
+
+(defun ciclos-por-tiempo(minutos)
+  (let ((duracion-ciclo-total (+ 90 6 120 9))) ; ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg - INTERMITENCIA: 9s
+      (list (floor (* minutos 60) duracion-ciclo-total))
+  )
+)
+
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Requerimiento 6: Informe de Distribución Temporal
+
+;; ========================================================
+;; FUNCIÓN: distribucion_porcentual
+;; NATURALEZA: Pura (dadas las mismas duraciones de entrada, siempre retorna la misma distribución porcentual)
+;; ESTRATEGIA: Orden Superior (mapcar aplicado sobre la lista de duraciones)
+;; IMPACTO: No destructiva
+;; ========================================================
+
+(defun distribucion_porcentual ()
+  
+  (let* ((duracion-ciclo-total (+ 90 6 120 9)) ; variable 1: ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg - INTERMITENCIA: 9s
+
+        (duracion-en-una-hora (* 3600 duracion-ciclo-total)) ; variable 2: calcula la duracion total del ciclo completo en una hora. "Devuelve el total en seg".
+
+        (porcentajes (mapcar (lambda (d) (* (float (/ (* d 3600) duracion-en-una-hora)) 100)) ; variable 3: calcula porcentajes de cada color del ciclo en una hora.
+                      (list 90 6 120 9))
+        ))
+    (list
+      (list 'en-rojo     (first porcentajes))
+      (list 'en-amarillo (second porcentajes))
+      (list 'en-verde    (third porcentajes))
+      (list 'en-intermitente (fourth porcentajes))
+    )
+  )
+)
+
+
+
+
+
+
 
 
