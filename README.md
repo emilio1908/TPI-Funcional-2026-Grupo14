@@ -8,7 +8,7 @@
 | Gabaldo Zdanovicz, Matias Nahuel  | [zeedthegreat](https://github.com/zeedthegreat) |
 | Bonessi, Luis Maria               | [luismabonessi](https://github.com/luismabonessi) |
 | Rojas, Ruth                       | [rmilagrosrojas22-art](https://github.com/rmilagrosrojas22-art) |
-| Frias, Juan Gabriel               | Inactivo                                             |
+| Frias, Juan Gabriel               | [juangabriel1012](https://github.com/juangabriel1012) |
 
 # TPI-Funcional-2026-Grupo14
 
