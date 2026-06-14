@@ -64,8 +64,8 @@
 (defun timer (timestamp)
   (let ((segundo-ciclo (mod timestamp 216)))
     (cond 
-      ((< segundo-ciclo 90) 'en-rojo)
-      ((< segundo-ciclo 96) 'en-amarillo)
+      ((<= segundo-ciclo 90) 'en-rojo)
+      ((<= segundo-ciclo 96) 'en-amarillo)
       (t 'en-verde)
     )
   )
@@ -120,15 +120,14 @@
 ;; ESTRATEGIA: Uso de let para definir duración total del ciclo y floor para calcular ciclos completos
 ;; IMPACTO: No destructiva (retorna lista con número de ciclos y recomendación, no altera variables globales)
 ;; ========================================================
-
+  
 (defun duracion-ciclo (segundos)
-  (let ((duracion-ciclo-total (+ 90 6 120)))
-    (list (floor segundos duracion-ciclo-total) ; número de ciclos completos sobre el total del ciclo 
+  (let ((duracion-ciclo-total (+ 90 6 120))) ; ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg
+    (list (abs (floor segundos duracion-ciclo-total)) ; número de ciclos completos sobre el total del ciclo 
           (recomendacion-ciclo segundos) ; recomendación sobre la duración
     )
   )
-)     
-
+)   
 
 ;; ========================================================
 ;; FUNCIÓN: recomendacion-ciclo
@@ -158,8 +157,8 @@
 ;; ========================================================
 
 (defun ciclos-por-tiempo(minutos)
-  (let ((duracion-ciclo-total (+ 90 6 120)))
-    (list (floor (* minutos 60) duracion-ciclo-total))
+  (let ((duracion-ciclo-total (+ 90 6 120))) ; ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg
+      (abs (floor (* minutos 60) duracion-ciclo-total))
   )
 )
 
@@ -171,15 +170,18 @@
 
 ;; ========================================================
 ;; FUNCIÓN: distribucion_porcentual
-;; NATURALEZA: Pura (dadas las mismas duraciones de entrada, siempre retorna la misma distribución porcentual)
-;; ESTRATEGIA: Orden Superior (mapcar aplicado sobre la lista de duraciones)
-;; IMPACTO: No destructiva
+;; NATURALEZA: Pura (Dado un ciclo fijo, siempre retorna los mismos porcentajes)
+;; ESTRATEGIA: Orden Superior (Implementada mediante let*, mapcar y lambda)
+;; IMPACTO: No destructiva (Solo calcula proporciones de tiempos de colores)
 ;; ========================================================
-(defun distribucion_porcentual (duracion-rojo duracion-amarillo duracion-verde)
+(defun distribucion_porcentual ()
   
-  (let* ((total (+ duracion-rojo duracion-amarillo duracion-verde)) ; variable 1
-        (porcentajes (mapcar (lambda (d) (* (/ d (float total)) 100)) ; variable 2
-                      (list duracion-rojo duracion-amarillo duracion-verde))
+  (let* ((duracion-ciclo-total (+ 90 6 120)) ; variable 1: ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg
+
+        (duracion-en-una-hora (* 3600 duracion-ciclo-total)) ; variable 2: calcula la duracion total del ciclo completo en una hora. "Devuelve el total en seg".
+
+        (porcentajes (mapcar (lambda (d) (* (float (/ (* d 3600) duracion-en-una-hora)) 100)) ; variable 3: calcula porcentajes de cada color del ciclo en una hora.
+                      (list 90 6 120))
         ))
     (list
       (list 'en-rojo     (first porcentajes))
