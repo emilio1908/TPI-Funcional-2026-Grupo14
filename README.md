@@ -39,7 +39,19 @@ Se debera implementar la lógica de control urbano para el "Sistema de semáforo
 7. **`Aseguramiento de la calidad:`** Para cada uno de los requerimientos anteriores se debe proveer ejemplos de uso que demuestren el funcionamiento normal.
 
 ## 🔎 Estado Actual: NO TERMINADO
-👨‍💻 *Aún en proceso. (Organizando tareas y preparando la resolucion de la consigna en codigo LISP)* 
+👨‍💻 *Aún en proceso.* 
+
+*(FASE 1 - Requerimientos del 1 al 6 ✔️)* 
+
+*(FASE 2 - Integración de librería ✔️)*
+
+*(FASE 3 - Estudio comparativo entre LISP y CLOJURE ❌)*
+
+*⚠️ Adicionales de entrega:*
+
+*(Informe ❌)*
+
+*(Video ❌)*
 
 ## 🔗 Links de enlace 
 - 📝 Informe Técnico Analítico: [`docs/Informe.md`](docs/Informe.md)
