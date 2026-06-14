@@ -446,9 +446,9 @@ ejemplos...
 
 ;; ========================================================
 ;; FUNCIÓN: distribucion_porcentual
-;; NATURALEZA: Pura (dadas las mismas duraciones de entrada, siempre retorna la misma distribución porcentual)
-;; ESTRATEGIA: Orden Superior (mapcar aplicado sobre la lista de duraciones)
-;; IMPACTO: No destructiva
+;; NATURALEZA: Pura (Dado un ciclo fijo, siempre retorna los mismos porcentajes)
+;; ESTRATEGIA: Orden Superior (Implementada mediante let*, mapcar y lambda)
+;; IMPACTO: No destructiva (Solo calcula proporciones de tiempos de colores)
 ;; ========================================================
 
 (defun distribucion_porcentual ()
