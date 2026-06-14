@@ -87,10 +87,10 @@
 (defun registro-de-estados (color-anterior color-nuevo)
   (format t
           "[~A] la luz ha cambiado de ~A a ~A~%"
-          (local-time:format-timestring
+          (local-time:format-timestring ; toma el timestamp y lo transforma en texto.
            nil
-           (local-time:now)
-           :format '((:year 4)
+           (local-time:now) ; Devuelve un timestamp interno de la libreria.
+           :format '((:year 4) ; formato de fecha hora y fecha
                      "-"
                      (:month 2)
                      "-"
@@ -100,7 +100,8 @@
                      ":"
                      (:min 2)
                      ":"
-                     (:sec 2)))
+                     (:sec 2))
+          )
           color-anterior
           color-nuevo
   )
@@ -373,10 +374,10 @@ ejemplos...
 (defun registro-de-estados (color-anterior color-nuevo)
   (format t
           "[~A] la luz ha cambiado de ~A a ~A~%"
-          (local-time:format-timestring
+          (local-time:format-timestring ; toma el timestamp y lo transforma en texto.
            nil
-           (local-time:now)
-           :format '((:year 4)
+           (local-time:now) ; Devuelve un timestamp interno de la libreria.
+           :format '((:year 4) ; formato de fecha hora y fecha
                      "-"
                      (:month 2)
                      "-"
@@ -386,7 +387,8 @@ ejemplos...
                      ":"
                      (:min 2)
                      ":"
-                     (:sec 2)))
+                     (:sec 2))
+          )
           color-anterior
           color-nuevo
   )
@@ -474,17 +476,17 @@ ejemplos...
 
 ;; --------------------------------------------------------
 ;; FUNCIÓN: informe
-;; NATURALEZA: No Pura
-;; ESTRATEGIA: Función de orden superior
-;; IMPACTO: No Destructiva
+;; NATURALEZA: Impura (Genera efectos externos al escribir en un archivo)
+;; ESTRATEGIA: Entrada/Salida (Implementada mediante with-open-file, format y mapcar)
+;; IMPACTO: Destructiva controlada (Sobrescribe/crea archivo de informe con transiciones)
 ;; --------------------------------------------------------
 
 (defun informe (datos)
-  (with-open-file (stream
+  (with-open-file (stream ; Usa with-open-file para abrir (o crear) el archivo.
                    "informe-ejecucion-semaforo.txt"
-                   :direction :output
-                   :if-exists :supersede
-                   :if-does-not-exist :create)
+                   :direction :output ; Abre el archivo para escritura.
+                   :if-exists :supersede ; Si ya existe, lo sobrescribe.
+                   :if-does-not-exist :create) ; Si no existe, lo crea.
 
     (format stream
             "Informe de Ejecución del Sistema Semafórico~%")
@@ -499,7 +501,7 @@ ejemplos...
                 "~A - Transición: ~A -> ~A~%"
                 (local-time:format-timestring
                  nil
-                 (local-time:unix-to-timestamp (car transicion))
+                 (local-time:unix-to-timestamp (car transicion)) ; Extrae el timestamp (tiempo unix) y luego lo convierte en hora y fecha legible.
                  :format '((:year 4)
                            "-"
                            (:month 2)
@@ -512,13 +514,15 @@ ejemplos...
                            ":"
                            (:sec 2)))
 
-                (cadr transicion)
-                (caddr transicion)))
+                (cadr transicion) ; Extrae el color actual.
+                (caddr transicion))) ; Extrae el color al que se cambia.
 
       datos)
 
     (format stream
-            "~%--- Fin del Informe ---")))
+            "~%--- Fin del Informe ---")
+  )
+)
 
 
 
