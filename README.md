@@ -45,7 +45,7 @@ Se debera implementar la lógica de control urbano para el "Sistema de semáforo
 
 *(FASE 2 - Integración de librería ✔️)*
 
-*(FASE 3 - Estudio comparativo entre LISP y CLOJURE ❌)*
+*(FASE 3 - Estudio comparativo entre LISP y CLOJURE ✔️)*
 
 *⚠️ Adicionales de entrega:*
 
