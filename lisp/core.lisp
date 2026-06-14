@@ -469,8 +469,56 @@ ejemplos...
   )
 )
 
+;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;;Extensión 2: Persistencia de Datos
 
+;; --------------------------------------------------------
+;; FUNCIÓN: informe
+;; NATURALEZA: No Pura
+;; ESTRATEGIA: Función de orden superior
+;; IMPACTO: No Destructiva
+;; --------------------------------------------------------
 
+(defun informe (datos)
+  (with-open-file (stream
+                   "informe-ejecucion-semaforo.txt"
+                   :direction :output
+                   :if-exists :supersede
+                   :if-does-not-exist :create)
+
+    (format stream
+            "Informe de Ejecución del Sistema Semafórico~%")
+
+    (format stream
+            "=========================================~%")
+
+    (mapcar
+      (lambda (transicion)
+
+        (format stream
+                "~A - Transición: ~A -> ~A~%"
+                (local-time:format-timestring
+                 nil
+                 (local-time:unix-to-timestamp (car transicion))
+                 :format '((:year 4)
+                           "-"
+                           (:month 2)
+                           "-"
+                           (:day 2)
+                           " "
+                           (:hour 2)
+                           ":"
+                           (:min 2)
+                           ":"
+                           (:sec 2)))
+
+                (cadr transicion)
+                (caddr transicion)))
+
+      datos)
+
+    (format stream
+            "~%--- Fin del Informe ---")))
 
 
 
