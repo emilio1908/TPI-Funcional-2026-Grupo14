@@ -41,11 +41,13 @@
 ;; ========================================================
 
 (defun transicion (color-actual cambiar-a)
-(cond 
-((and (equal  color-actual 'en-rojo) (equal  cambiar-a 'verde)) (list color-actual  "Cambiar-a-verde"))
-((and (equal  color-actual 'en-amarillo) (equal  cambiar-a 'rojo )) (list color-actual "Cambiar-a-rojo"))
-((and  (equal  color-actual 'en-verde) (equal  cambiar-a 'amarillo )) (list color-actual "Cambiar-a-amarillo"))
-(t (list color-actual "Accion-por-defecto"))))
+  (cond
+    ((and (equal  color-actual 'en-rojo) (equal  cambiar-a 'verde)) (list color-actual  "Cambiar-a-verde"))
+    ((and (equal  color-actual 'en-amarillo) (equal  cambiar-a 'rojo )) (list color-actual "Cambiar-a-rojo"))
+    ((and  (equal  color-actual 'en-verde) (equal  cambiar-a 'amarillo )) (list color-actual "Cambiar-a-amarillo"))
+    (t (list color-actual "Accion-por-defecto"))
+  )
+)
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 2: Temporizador Automático
@@ -59,13 +61,15 @@
 ;; IMPACTO: No destructiva
 ;; ========================================================
 
-(EN-ROJO "Accion-por-defecto")
-Break 1 [3]> (defun timer (timestamp)
-(let ((segundo-ciclo (mod timestamp 216)))
-(cond 
-((< segundo-ciclo 90) 'en-rojo)
-((< segundo-ciclo 96) 'en-amarillo)
-(t 'en-verde))))
+(defun timer (timestamp)
+  (let ((segundo-ciclo (mod timestamp 216)))
+    (cond 
+      ((< segundo-ciclo 90) 'en-rojo)
+      ((< segundo-ciclo 96) 'en-amarillo)
+      (t 'en-verde)
+    )
+  )
+)
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 3: Sistema de Auditoría
@@ -98,7 +102,9 @@ Break 1 [3]> (defun timer (timestamp)
                      ":"
                      (:sec 2)))
           color-anterior
-          color-nuevo))
+          color-nuevo
+  )
+)
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 4: Análisis de Ciclos Semafóricos
@@ -153,7 +159,7 @@ Break 1 [3]> (defun timer (timestamp)
 
 (defun ciclos-por-tiempo(minutos)
   (let ((duracion-ciclo-total (+ 90 6 120)))
-      (list (floor (* minutos 60) duracion-ciclo-total))
+    (list (floor (* minutos 60) duracion-ciclo-total))
   )
 )
 
@@ -170,19 +176,18 @@ Break 1 [3]> (defun timer (timestamp)
 ;; IMPACTO: No destructiva
 ;; ========================================================
 (defun distribucion_porcentual (duracion-rojo duracion-amarillo duracion-verde)
-  (let* ((total (+ duracion-rojo
-                   duracion-amarillo
-                   duracion-verde))
-         (porcentajes
-          (mapcar (lambda (d)
-                    (* (/ d (float total)) 100))
-                  (list duracion-rojo
-                        duracion-amarillo
-                        duracion-verde))))
+  
+  (let* ((total (+ duracion-rojo duracion-amarillo duracion-verde)) ; variable 1
+        (porcentajes (mapcar (lambda (d) (* (/ d (float total)) 100)) ; variable 2
+                      (list duracion-rojo duracion-amarillo duracion-verde))
+        ))
     (list
       (list 'en-rojo     (first porcentajes))
       (list 'en-amarillo (second porcentajes))
-      (list 'en-verde    (third porcentajes)))))
+      (list 'en-verde    (third porcentajes))
+    )
+  )
+)
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 7: Aseguramiento de la calidad
