@@ -316,83 +316,139 @@ Instalar y cargar la librería antes de ejecutar el sistema.
 
 ---
 
+# Informe Técnico Analítico
+
+> Integrantes — Grupo 14 (UNNE): Gaitán Pereyra Julio Emilio · Gabaldo Zdanovicz Matías Nahuel · Bonessi Luis María · Rojas Ruth · Frias Juan Gabriel.
+
+*Las secciones de Fase 1 y Fase 2 se encuentran aún en proceso.*
+
+---
+
 # Fase 3 — Estudio Comparativo: Common Lisp vs. Clojure
 
-**Lenguaje asignado: Clojure.** Código fuente de las funciones reimplementadas: [`comparativa/solucion.clj`](../comparativa/solucion.clj).
+**Lenguaje asignado:** Clojure.
 
-## 1. Presentación breve del lenguaje
+Código fuente de las funciones reimplementadas: `comparativa/solucion.clj`.
 
-**Clojure** es un dialecto moderno de Lisp creado por **Rich Hickey** en **2007**. Es un lenguaje funcional, dinámico y de propósito general que se ejecuta principalmente sobre la **Máquina Virtual de Java (JVM)**, lo que le permite interoperar con todo el ecosistema de bibliotecas de Java. Existen además variantes que compilan a JavaScript (**ClojureScript**) y al CLR de .NET.
+---
 
-Sus pilares de diseño son:
+## Presentación breve del lenguaje
 
-- **Inmutabilidad por defecto:** sus colecciones (listas, vectores, mapas, conjuntos) son **estructuras de datos persistentes e inmutables**. Modificar una colección no la altera, sino que devuelve una versión nueva que comparte la mayor parte de su estructura con la original (*structural sharing*).
-- **"Code as data" (homoiconicidad):** al igual que todo Lisp, el código es una estructura de datos del propio lenguaje, lo que habilita macros muy potentes.
-- **Estados gestionados explícitamente:** cuando se necesita estado mutable, se hace de forma controlada y segura para concurrencia mediante `atom`, `ref`, `agent` y la *Software Transactional Memory (STM)*.
-- **Keywords** (`:rojo`) como mecanismo idiomático y eficiente para etiquetar y mapear estados.
+Clojure es un lenguaje de programación funcional perteneciente a la familia Lisp, creado por Rich Hickey en el año 2007. Se ejecuta principalmente sobre la Máquina Virtual de Java (JVM), lo que le permite aprovechar el ecosistema de bibliotecas y herramientas desarrolladas para Java.
+
+Al igual que Common Lisp, utiliza una sintaxis basada en listas y expresiones entre paréntesis. Sin embargo, incorpora características modernas orientadas a la programación funcional, especialmente el uso de estructuras de datos inmutables y mecanismos seguros para el manejo de concurrencia.
+
+Entre sus principales características se destacan:
+
+* Inmutabilidad por defecto.
+* Programación funcional.
+* Interoperabilidad con Java.
+* Uso de keywords para representar estados y etiquetas.
+* Soporte para programación concurrente.
 
 ### Industrias y áreas donde se utiliza
-- **Sistemas backend y de datos a gran escala** (procesamiento concurrente, *data engineering*, *streaming*).
-- **Fintech y banca** (donde la inmutabilidad y la concurrencia segura reducen errores).
-- **Desarrollo web full-stack** (Clojure en el servidor + ClojureScript en el navegador).
-- **Análisis de datos y machine learning** sobre la JVM.
 
-### Empresas conocidas que lo utilizan
-- **Nubank** (el banco digital más grande de Latinoamérica; uno de los mayores usuarios de Clojure del mundo, adquirió incluso la empresa de Rich Hickey, Cognitect).
-- **Walmart** (procesamiento de recibos y *e-commerce*).
-- **Apple**, **Netflix**, **Cisco**, **Atlassian** y **CircleCI**, entre otras.
+Clojure es utilizado principalmente en:
 
-## 2. Funciones reimplementadas
+* Sistemas backend.
+* Plataformas financieras.
+* Procesamiento de datos.
+* Aplicaciones web.
+* Sistemas distribuidos.
 
-Se reimplementaron **únicamente** las funciones `transicion` y `timer` (tomando como base la *Iteración 2* de `lisp/core.lisp`, con el estado `intermitente`), conservando los encabezados de clasificación obligatorios. El detalle completo, las variantes idiomáticas y los ejemplos de uso se encuentran en [`comparativa/solucion.clj`](../comparativa/solucion.clj). En resumen:
+### Empresas que utilizan Clojure
 
-- `transicion`: se mantiene la estrategia de `cond` (idéntica a Lisp), pero los estados pasan de **símbolos cotizados** (`'en-rojo`) a **keywords** (`:en-rojo`) y el resultado se devuelve en un **vector inmutable** `[ ... ]` en lugar de una lista.
-- `timer`: misma lógica pura basada en `(mod timestamp 225)` y `cond`, retornando keywords.
+Algunas empresas conocidas que han utilizado o utilizan Clojure son:
 
-## 3. Respuestas a las preguntas teóricas (Clojure)
+* Nubank.
+* Walmart.
+* Netflix.
+* Cisco.
+* Atlassian.
 
-### Pregunta 1 — Ventaja técnica y de rendimiento de los Keywords frente a los símbolos cotizados
+---
 
-En Common Lisp un símbolo como `'en-rojo` se *internaliza* en un paquete y arrastra metadata propia de los símbolos (valor, función asociada, *property list*, paquete de origen). En Clojure los estados se modelan con **keywords** (`:en-rojo`), y esto ofrece ventajas concretas:
+## Funciones reimplementadas
 
-1. **Internamiento + caché global (rendimiento):** los keywords se *internan* una sola vez en una tabla global. Esto significa que dos apariciones de `:en-rojo` en cualquier parte del programa apuntan **al mismo objeto en memoria**. Por lo tanto la comparación de igualdad (`=`) se resuelve prácticamente como una **comparación de identidad/referencia (`identical?`)**, que es O(1) y muy barata — ideal para un `cond`/`case` que despacha sobre estados como hace `transicion`.
+La consigna de la Fase 3 solicitó reimplementar únicamente las funciones `transicion` y `timer` utilizando el lenguaje asignado.
 
-2. **Son auto-evaluables:** un keyword se evalúa a sí mismo, no necesita comillas (`'`). Esto elimina toda una clase de errores de *quoting* del Lisp clásico (olvidar el `'` y que el símbolo se intente evaluar como variable). En `transicion` se escribe directamente `:en-rojo`, no `':en-rojo`.
+Para ello se tomó como referencia la Iteración 2 desarrollada en Common Lisp, donde se incorpora el estado intermitente dentro del ciclo semafórico.
 
-3. **Funcionan como funciones de búsqueda:** un keyword **es invocable** y sabe buscarse a sí mismo dentro de un mapa: `(:en-rojo {:en-rojo 90})` ⇒ `90`. Esto hace que mapear estados a tiempos sea extremadamente directo (`(estado tabla-de-tiempos)`), sin necesidad de funciones auxiliares.
+Las principales diferencias observadas entre ambas implementaciones fueron:
 
-4. **Despacho eficiente con `case`:** como los keywords se comparan en tiempo constante, la forma `case` (que en Clojure compila a un salto tipo *tabla hash* en O(1)) es la herramienta natural para mapear estados, como se muestra en la variante `transicion-case`.
+* En Common Lisp se utilizan símbolos cotizados como `'en-rojo`.
+* En Clojure se utilizan keywords como `:en-rojo`.
+* Los resultados se representan mediante vectores inmutables.
+* Se mantiene la misma lógica funcional utilizada en la versión original.
 
-En síntesis: el keyword es la estructura idiomática y de **costo constante** para representar y comparar estados, mientras que el símbolo cotizado es más pesado conceptual y operativamente.
+La funcionalidad general del sistema permanece idéntica en ambos lenguajes.
+
+---
+
+## Respuestas a las preguntas teóricas
+
+### Pregunta 1 — Ventajas de los Keywords frente a los símbolos cotizados
+
+En Common Lisp los estados suelen representarse mediante símbolos cotizados, por ejemplo:
+
+```lisp
+'en-rojo
+```
+
+En Clojure la forma más habitual de representar estados es mediante keywords:
+
+```clojure
+:en-rojo
+```
+
+Las ventajas principales son:
+
+* No necesitan comillas para ser utilizadas.
+* Son fáciles de leer y reconocer.
+* Se utilizan habitualmente para representar estados y etiquetas.
+* Permiten realizar búsquedas sencillas dentro de mapas.
+* Su comparación es muy eficiente.
+
+Por estas razones resultan especialmente adecuadas para modelar los estados del semáforo.
 
 ### Pregunta 2 — Cómo maneja Clojure el paso del tiempo sin modificar variables
 
-Clojure **prohíbe la mutación por defecto** y usa **estructuras de datos persistentes**, por lo que el "paso del tiempo" no se simula reasignando una variable global de estado (no existe `setf`/`setq`). En su lugar, **el tiempo es un dato que fluye como argumento**, exactamente igual que exige la consigna de inmutabilidad de la Fase 1. Hay tres formas idiomáticas, todas presentes en `solucion.clj`:
+Una de las características principales de Clojure es la inmutabilidad de sus estructuras de datos.
 
-1. **El tiempo como argumento de una función pura:** `timer` no guarda estado; recibe el `timestamp` y devuelve el color correspondiente. La "línea de tiempo" completa es simplemente el resultado de evaluar `timer` para cada instante.
+En lugar de modificar variables durante la ejecución, el estado se transmite mediante argumentos y valores de retorno.
 
-2. **Recursión de cola con `loop`/`recur` (`simular-ciclo`):** en lugar de un bucle que va *pisando* una variable contador, `recur` vuelve a entrar a la función con **nuevos valores ligados** (`(inc t)`, `(dec restantes)`). En cada paso se construye un vector acumulador con `conj`; gracias al *structural sharing*, cada `conj` produce una **versión nueva e inmutable** que comparte estructura con la anterior: la versión previa nunca se modifica. Además, `recur` garantiza la *Tail Call Optimization*, evitando el desbordamiento de pila.
+En nuestro caso, la función `timer` recibe un timestamp y devuelve el estado correspondiente del semáforo. Cada llamada produce un resultado nuevo sin modificar ningún dato existente.
 
-3. **Funciones de orden superior sobre una secuencia perezosa (`simular-ciclo-hof`):** `(mapv timer (range t0 tn))` describe declarativamente "el color en cada instante del rango", sin contador mutable alguno.
+Para representar una secuencia temporal pueden utilizarse mecanismos como:
 
-Cuando un sistema **sí** necesita un estado vivo y mutable (por ejemplo, "cuál es el color *ahora mismo* en la intersección"), Clojure no rompe la inmutabilidad de los datos: encapsula la referencia en un **`atom`** y la actualiza con `swap!`/`reset!`. El valor que el `atom` apunta sigue siendo inmutable; lo único que cambia de forma atómica y segura para concurrencia es **a qué valor inmutable apunta la referencia**. Así se separa la *identidad* (la referencia) del *valor* (el estado inmutable en el tiempo), que es el modelo conceptual central de Clojure.
+* Recursión de cola mediante `loop` y `recur`.
+* Funciones de orden superior como `map`, `mapv` o `reduce`.
 
-## 4. Conclusión del grupo
+De esta manera el paso del tiempo se modela como una sucesión de valores inmutables, respetando los principios de la programación funcional.
 
-Estudiar Clojure resultó especialmente natural viniendo de Common Lisp: compartimos la sintaxis de paréntesis (S-expressions), la homoiconicidad y la filosofía funcional, por lo que la traducción de `transicion` y `timer` fue casi directa. Las diferencias que más nos marcaron fueron conceptuales más que sintácticas:
+---
 
-- El reemplazo de **símbolos cotizados por keywords** nos pareció una mejora clara de legibilidad y de rendimiento para modelar estados, además de eliminar errores típicos de *quoting*.
-- La **inmutabilidad obligatoria** de Clojure formaliza y refuerza lo que en la Fase 1 tuvimos que imponernos como una *restricción de disciplina* en Lisp (no usar `setf`/`setq`): en Clojure es el comportamiento por defecto, no una regla que uno pueda olvidar.
-- El uso de **vectores `[...]`** en lugar de listas para datos, y de `loop`/`recur` con garantía de TCO, nos dio una forma más segura y predecible de iterar sin bucles imperativos.
+## Conclusión del grupo
 
-La principal curva de aprendizaje no estuvo en la sintaxis, sino en **cambiar la mentalidad** de "modificar una variable de estado" a "hacer fluir el estado como un valor inmutable a través de funciones". Una vez asimilado ese cambio, el código quedó más declarativo, más fácil de razonar y libre de efectos colaterales. La cercanía con la JVM y su adopción en empresas serias (Nubank, Walmart) nos mostró además que el paradigma funcional no es solo académico, sino plenamente productivo en la industria.
+La experiencia de trabajar con Clojure resultó interesante debido a su cercanía con Common Lisp.
 
-## 5. Bibliografía
+La sintaxis general es similar, lo que facilitó la comprensión inicial del lenguaje. Sin embargo, Clojure incorpora conceptos modernos relacionados con la inmutabilidad y el manejo seguro del estado, aspectos que se encuentran muy presentes en el paradigma funcional.
 
-- Sitio oficial de Clojure — https://clojure.org
-- *Rationale* y guía de estructuras de datos persistentes — https://clojure.org/about/rationale
-- Documentación de Keywords y colecciones — https://clojure.org/reference/data_structures
-- *Special forms* (`recur`, `loop`) — https://clojure.org/reference/special_forms
-- REPL en línea utilizado para pruebas — https://tryclojure.org/
-- Casos de uso en industria (Nubank / Cognitect) — https://www.cognitect.com / https://nubank.com.br
+Durante el desarrollo observamos que muchas de las ideas aplicadas en la implementación original en Common Lisp pueden trasladarse fácilmente a Clojure, aunque utilizando herramientas y convenciones propias del lenguaje.
+
+La utilización de keywords para representar estados, las estructuras de datos inmutables y las herramientas para programación concurrente fueron algunos de los aspectos más destacados.
+
+Como conclusión general, consideramos que Clojure constituye una alternativa moderna dentro de la familia Lisp y permite desarrollar aplicaciones robustas manteniendo los principios fundamentales de la programación funcional.
+
+---
+
+## Bibliografía
+
+* Sitio oficial de Clojure: https://clojure.org
+* Documentación oficial de estructuras de datos: https://clojure.org/reference/data_structures
+* Documentación oficial de special forms: https://clojure.org/reference/special_forms
+* REPL utilizado para pruebas: https://tryclojure.org
+* Información sobre Clojure en la industria: https://www.cognitect.com
+* Información institucional de Nubank: https://nubank.com.br
+
 
