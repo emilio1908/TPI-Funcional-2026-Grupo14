@@ -1,11 +1,3 @@
-## Informe Técnico Analítico
-
-> Integrantes — Grupo 14 (UNNE): Gaitán Pereyra Julio Emilio · Gabaldo Zdanovicz Matías Nahuel · Bonessi Luis María · Rojas Ruth · Frias Juan Gabriel.
-
-*Las secciones de Fase 1 y Fase 2 se encuentran aún en proceso.*
-
----
-
 # Informe Técnico Analítico
 
 > **Integrantes — Grupo 14 (UNNE):** Gaitán Pereyra Julio Emilio · Gabaldo Zdanovicz Matías Nahuel · Bonessi Luis María · Rojas Ruth · Frias Juan Gabriel.
