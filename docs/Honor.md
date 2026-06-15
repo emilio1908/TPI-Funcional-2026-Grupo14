@@ -17,7 +17,7 @@
 
 Declaración Jurada: Al subir este archivo al repositorio, declaro bajo compromiso de honor que las marcas anteriores reflejan fielmente mi participación y la naturaleza del desarrollo de este trabajo práctico. Entiendo que la cátedra cruzará esta declaración con la correcta clasificación en comentarios del código y con mi desempeño en la defensa oral/video.
 
-;;-------------------------------------------------------------------------------------------------------
+
 👤 Integrante 2: Bonessi Luis Maria - Usuario GitHub: @luismabonessi
 
 Código en Common Lisp (Fase 1 y 2) ● [ ] Desarrollo 100% Humano: El código fue diseñado, escrito y depurado puramente por mí/el grupo sin intervención de IA. ● [X] Asistencia de IA (Co-piloto): Utilicé IA como un tutor o documentación dinámica (búsqueda de errores sintácticos, explicación de funciones primitivas), pero la lógica y clasificación del semáforo fue estructurada por el grupo. ● [ ] Generación Completa por IA: Un modelo de IA generó bloques enteros o la totalidad de las funciones principales a partir del enunciado base.
