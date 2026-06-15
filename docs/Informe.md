@@ -6,6 +6,324 @@
 
 ---
 
+# Informe Técnico Analítico
+
+> **Integrantes — Grupo 14 (UNNE):** Gaitán Pereyra Julio Emilio · Gabaldo Zdanovicz Matías Nahuel · Bonessi Luis María · Rojas Ruth · Frias Juan Gabriel.
+
+---
+
+# Introducción
+
+El presente Trabajo Práctico Integrador tuvo como objetivo desarrollar un Sistema de Semáforos Inteligentes utilizando el paradigma funcional en Common Lisp, aplicando conceptos de funciones puras, inmutabilidad y composición funcional.
+
+Además de implementar la lógica principal del sistema, se investigó el ecosistema de herramientas disponible para Common Lisp mediante la integración de una librería externa, y se realizó un estudio comparativo con otro lenguaje funcional asignado por la cátedra, en nuestro caso **Clojure**.
+
+El proyecto permitió comprender cómo modelar un problema del mundo real utilizando programación funcional, analizar el flujo de datos sin mutación de estado y comparar diferentes enfoques para resolver una misma problemática.
+
+---
+
+# Fase 1 — Sistema de Semáforos Inteligentes
+
+## Restricciones de Diseño Aplicadas
+
+Durante el desarrollo se respetaron las restricciones impuestas por la consigna:
+
+### Inmutabilidad Absoluta
+
+No se utilizaron mecanismos de almacenamiento global mutable como:
+
+* `defparameter`
+* `defvar`
+* `setq`
+* `setf`
+
+El estado del sistema se transmite exclusivamente mediante argumentos y valores de retorno.
+
+### Cero Bucles Imperativos
+
+No se utilizaron estructuras imperativas como:
+
+* `loop`
+* `dolist`
+* `dotimes`
+* `while`
+
+Las operaciones repetitivas fueron resueltas mediante funciones de orden superior y transformaciones funcionales.
+
+---
+
+## Requerimiento 1 — Estados de Transición
+
+Se implementó la función `transicion`, encargada de modelar los cambios de estado del semáforo.
+
+En una primera iteración se trabajó con tres estados principales:
+
+* `en-rojo`
+* `en-amarillo`
+* `en-verde`
+
+Posteriormente se desarrolló una segunda iteración incorporando el estado:
+
+* `intermitente`
+
+Esto permitió representar de manera más realista las transiciones entre colores.
+
+La función fue clasificada como:
+
+* **Naturaleza:** Pura.
+* **Estrategia:** Evaluación mediante `cond`.
+* **Impacto:** No destructiva.
+
+---
+
+## Requerimiento 2 — Temporizador Automático
+
+Se implementó la función `timer`, encargada de determinar el estado actual del semáforo a partir de un timestamp en formato Unix (Epoch).
+
+La lógica se basa en el uso de la operación:
+
+```lisp
+(mod timestamp 225)
+```
+
+que permite reutilizar indefinidamente el mismo ciclo temporal.
+
+La segunda iteración del proyecto contempla:
+
+| Estado       | Duración     |
+| ------------ | ------------ |
+| Rojo         | 90 segundos  |
+| Intermitente | 3 segundos   |
+| Verde        | 120 segundos |
+| Intermitente | 3 segundos   |
+| Amarillo     | 6 segundos   |
+| Intermitente | 3 segundos   |
+
+Duración total del ciclo:
+
+```text
+225 segundos
+```
+
+---
+
+## Requerimiento 3 — Sistema de Auditoría
+
+Se implementó la función `registro-de-estados`, responsable de registrar los cambios de estado del semáforo.
+
+Su finalidad es permitir auditorías posteriores y reconstruir eventos ocurridos durante la ejecución del sistema.
+
+El registro se realiza mediante `format` y muestra:
+
+* Fecha.
+* Hora.
+* Estado anterior.
+* Estado nuevo.
+
+Ejemplo:
+
+```text
+[2026-06-14 18:30:25] la luz ha cambiado de EN-ROJO a EN-VERDE
+```
+
+Esta función es la única clasificada como **impura**, ya que genera salida por pantalla.
+
+---
+
+## Requerimiento 4 — Análisis de Ciclos Semafóricos
+
+Se desarrollaron las funciones:
+
+* `duracion-ciclo`
+* `recomendacion-ciclo`
+
+Estas permiten calcular la cantidad de ciclos completos y emitir recomendaciones según las reglas de negocio establecidas.
+
+La consigna establece que:
+
+* Ciclos menores a 35 segundos son considerados demasiado cortos.
+* Ciclos mayores a 150 segundos son considerados demasiado largos.
+* Los ciclos comprendidos entre ambos valores son considerados óptimos.
+
+---
+
+## Requerimiento 5 — Planificación Temporal
+
+Se implementó la función `ciclos-por-tiempo`.
+
+La misma recibe una cantidad de minutos, realiza la conversión a segundos y determina cuántos ciclos completos del semáforo pueden ejecutarse dentro de dicho período.
+
+Ejemplo:
+
+```lisp
+(ciclos-por-tiempo 32)
+```
+
+Resultado:
+
+```text
+8 ciclos completos
+```
+
+---
+
+## Requerimiento 6 — Informe de Distribución Temporal
+
+Se desarrolló la función `distribucion_porcentual`.
+
+Para su implementación se utilizaron funciones de orden superior:
+
+* `mapcar`
+* `lambda`
+
+El objetivo es calcular qué porcentaje del tiempo total corresponde a cada estado del semáforo.
+
+La función devuelve una lista con los porcentajes asociados a:
+
+* Rojo.
+* Amarillo.
+* Verde.
+* Intermitente.
+
+Esta solución mantiene la filosofía funcional del proyecto al evitar modificaciones de estructuras existentes.
+
+---
+
+# Fase 2 — Autonomía y Ecosistema
+
+## Quicklisp
+
+Para la segunda fase se investigó el gestor de paquetes **Quicklisp**, utilizado ampliamente en el ecosistema Common Lisp.
+
+Quicklisp permite:
+
+* Instalar librerías externas.
+* Gestionar dependencias.
+* Cargar paquetes automáticamente.
+
+Su funcionamiento es similar al de gestores de paquetes presentes en otros lenguajes modernos.
+
+---
+
+## Librería Seleccionada: Local-Time
+
+La librería elegida fue **Local-Time**.
+
+Su incorporación permitió mejorar el sistema de auditoría del requerimiento 3.
+
+Sin esta librería los tiempos se mostrarían únicamente como números Unix Epoch, lo que resulta poco práctico para un usuario humano.
+
+Por ejemplo:
+
+```text
+1749931200
+```
+
+puede mostrarse como:
+
+```text
+2026-06-14 18:30:25
+```
+
+facilitando significativamente la lectura de los registros.
+
+---
+
+## Integración en el Proyecto
+
+La función `registro-de-estados` utiliza:
+
+```lisp
+(local-time:now)
+(local-time:format-timestring)
+```
+
+para generar marcas temporales legibles.
+
+De esta forma se cumple el requisito de mostrar fechas y horas comprensibles para el operador del sistema.
+
+---
+
+# Bitácora de Depuración
+
+Durante el desarrollo surgieron diversos errores que permitieron comprender mejor el funcionamiento de Common Lisp.
+
+## Error 1 — Número incorrecto de argumentos
+
+Código:
+
+```lisp
+(transicion 'en-rojo)
+```
+
+Error obtenido:
+
+```text
+invalid number of arguments
+```
+
+### Causa
+
+La función requiere dos argumentos y sólo se proporcionó uno.
+
+### Solución
+
+Verificar la cantidad de parámetros antes de ejecutar la función.
+
+---
+
+## Error 2 — Variable sin valor
+
+Código:
+
+```lisp
+(timer hola)
+```
+
+Error obtenido:
+
+```text
+variable HOLA has no value
+```
+
+### Causa
+
+Se intentó evaluar un símbolo sin definir.
+
+### Solución
+
+Utilizar valores numéricos válidos para representar timestamps.
+
+---
+
+## Error 3 — División por cero
+
+Error producido durante pruebas de cálculo porcentual.
+
+### Causa
+
+La duración total del ciclo resultó igual a cero.
+
+### Solución
+
+Validar previamente los valores utilizados en los cálculos.
+
+---
+
+## Error 4 — Librería no cargada
+
+Error producido al utilizar funciones de Local-Time sin haber cargado previamente la librería.
+
+### Causa
+
+Quicklisp o Local-Time no se encontraban correctamente inicializados.
+
+### Solución
+
+Instalar y cargar la librería antes de ejecutar el sistema.
+
+---
+
 # Fase 3 — Estudio Comparativo: Common Lisp vs. Clojure
 
 **Lenguaje asignado: Clojure.** Código fuente de las funciones reimplementadas: [`comparativa/solucion.clj`](../comparativa/solucion.clj).
