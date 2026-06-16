@@ -81,17 +81,6 @@
   )
 )
 
-
-(defun timer (timestamp)
-  (let ((segundo-ciclo (mod timestamp 216)))
-    (cond 
-      ((<= segundo-ciclo 90) 'en-rojo)
-      ((<= segundo-ciclo 96) 'en-amarillo)
-      (t 'en-verde)
-    )
-  )
-)
-
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 3: Sistema de Auditoría
 ; El equipo de analistas forenses necesita poder determinar qué color tenía una luz a determinada hora. Se necesita implementar un mecanismo de registro de los diferentes cambios de 
@@ -331,6 +320,7 @@ ejemplos...
 -----------------------------------------------------
 ******************** ITERACION 2 ********************
 -----------------------------------------------------
+; Extensión 1: Intermitencia de Seguridad
 
 ; Requerimiento 1: Estados de Transición
 
