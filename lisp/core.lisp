@@ -49,16 +49,6 @@
   )
 )
 
-
-(defun transicion (color-actual cambiar-a)
-  (cond
-    ((and (equal  color-actual 'en-rojo) (equal  cambiar-a 'verde)) (list color-actual  "Cambiar-a-verde"))
-    ((and (equal  color-actual 'en-amarillo) (equal  cambiar-a 'rojo )) (list color-actual "Cambiar-a-rojo"))
-    ((and  (equal  color-actual 'en-verde) (equal  cambiar-a 'amarillo )) (list color-actual "Cambiar-a-amarillo"))
-    (t (list color-actual "Accion-por-defecto"))
-  )
-)
-
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 2: Temporizador Automático
 ; Para la implementación de un actuador que realizará el cambio de luces se necesita implementar un mecanismo automatizado de temporización. Se solicita implementar una función Timer, 
