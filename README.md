@@ -49,7 +49,7 @@ Se debera implementar la lógica de control urbano para el "Sistema de semáforo
 
 *⚠️ Adicionales de entrega:*
 
-*(Informe ❌)*
+*(Informe ✔️)*
 
 *(Video ❌)*
 
