@@ -56,6 +56,6 @@ Se debera implementar la lógica de control urbano para el "Sistema de semáforo
 ## 🔗 Links de enlace 
 - 📝 Informe Técnico Analítico: [`docs/Informe.md`](docs/Informe.md)
 
-- 🔴 (VIDEO YOUTUBE) Demo Tecnica: ...
+- 🔴 (VIDEO YOUTUBE) Demo Tecnica:(https://www.youtube.com/watch?v=BqUR9dmGkGc)
 
 
