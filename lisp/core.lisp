@@ -215,25 +215,22 @@
 ;;; valor ingresado -> (registro-de-estados 'en-rojo 'en-verde)
 ;;; valor devuelto  -> [2026-06-14 00:20:15] la luz ha cambiado de EN-ROJO a EN-VERDE
 
-
 ;;; Funcionamiento con camino ALTERNATIVO:
 ;;; valor ingresado -> (registro-de-estados 'en-verde 'en-amarillo)
 ;;; valor devuelto  -> [2026-06-14 00:21:30] la luz ha cambiado de EN-VERDE a EN-AMARILLO
 
-
 ;;; valor ingresado -> (registro-de-estados 'en-amarillo 'en-rojo)
 ;;; valor devuelto  -> [2026-06-14 00:21:36] la luz ha cambiado de EN-AMARILLO a EN-ROJO
-
 
 ;;; Caso de ejemplo de ERROR / LIMITE:
 ;;; valor ingresado -> (registro-de-estados nil 'en-verde)
 ;;; valor devuelto  -> [2026-06-14 00:22:00] la luz ha cambiado de NIL a EN-VERDE
 ;;; (no produce error, pero NIL como color anterior es semánticamente inválido)
 
-
 ;;; valor ingresado -> (registro-de-estados 'en-rojo nil)
 ;;; valor devuelto  -> [2026-06-14 00:22:10] la luz ha cambiado de EN-ROJO a NIL
 ;;; (no produce error, pero NIL como color nuevo es semánticamente inválido)
+
 
 ;;; ========== REQUERIMIENTO 4: duracion-ciclo / recomendacion-ciclo ==========
 
@@ -248,6 +245,7 @@
 ;;; Caso de ejemplo de ERROR:
 ;;; valor ingresado -> (duracion-ciclo 'treintaycuatro)
 ;;; valor devuelto  -> *** - FLOOR: TREINTAYCUATRO is not a real number
+
 
 ;;; ========== REQUERIMIENTO 5: ciclos-por-tiempo ==========
 
