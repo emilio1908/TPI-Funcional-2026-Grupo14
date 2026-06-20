@@ -196,19 +196,20 @@ La función fue clasificada como:
 
 ## Requerimiento 7: Aseguramiento de la calidad
 
-Para finalizar esta 1ra fase, se realizaron las pruebas correspondientes para comprobar el funcionamiento correcto de cada función, a continuación se muestran ejemplos teniendo en cuenta que pueden haber 3 caminos posibles: (normales, alternativos y casos de errores):
+Para finalizar esta 1ra fase, se realizaron las pruebas correspondientes para comprobar el funcionamiento correcto de cada función (en base a requerimientos del 1 al 6 de iteración 1). 
+A continuación se muestran ejemplos teniendo en cuenta que pueden haber 3 caminos posibles: (normales, alternativos y casos de errores):
  
 <img width="664" height="633" alt="image" src="https://github.com/user-attachments/assets/f49fbf8b-6255-4630-9bf5-2aade043d8da" />
 
 <img width="875" height="536" alt="image" src="https://github.com/user-attachments/assets/142f74ba-f86c-4e8c-ad1f-a77a87bd0c1d" />
 
-<img width="506" height="408" alt="image" src="https://github.com/user-attachments/assets/e63293cf-ce6f-4b4a-b729-da2901d48871" />
+<img width="872" height="628" alt="image" src="https://github.com/user-attachments/assets/308128dc-b894-4f6b-b5e1-aff1387458bf" />
 
 <img width="886" height="377" alt="image" src="https://github.com/user-attachments/assets/8897bbb6-689a-48e6-94c5-7ba588162576" />
 
 <img width="730" height="441" alt="image" src="https://github.com/user-attachments/assets/5f4a591c-759d-49dc-9202-a7151a21780f" />
 
-<img width="551" height="256" alt="image" src="https://github.com/user-attachments/assets/ebf8a3f4-75a9-440b-968c-5ccdd04e1828" />
+<img width="1013" height="406" alt="image" src="https://github.com/user-attachments/assets/904c926c-10e8-480d-a629-6042e254a0cf" />
 
 
 ---
