@@ -213,23 +213,27 @@
 
 ;;; Funcionamiento NORMAL:
 ;;; valor ingresado -> (registro-de-estados 'en-rojo 'en-verde)
-;;; valor devuelto  -> Tiempo 90: la luz ha cambiado de EN-ROJO a EN-VERDE
+;;; valor devuelto  -> [2026-06-14 00:20:15] la luz ha cambiado de EN-ROJO a EN-VERDE
+
 
 ;;; Funcionamiento con camino ALTERNATIVO:
-;;; valor ingresado -> (registro-de-estados 10000 'en-rojo 'en-verde)
-;;; valor devuelto  -> Tiempo 10000: la luz ha cambiado de EN-ROJO a EN-VERDE
+;;; valor ingresado -> (registro-de-estados 'en-verde 'en-amarillo)
+;;; valor devuelto  -> [2026-06-14 00:21:30] la luz ha cambiado de EN-VERDE a EN-AMARILLO
 
-;;; valor ingresado -> (registro-de-estados 90.5 'en-rojo 'en-verde)
-;;; valor devuelto  -> Tiempo 90.5: la luz ha cambiado de EN-ROJO a EN-VERDE
+
+;;; valor ingresado -> (registro-de-estados 'en-amarillo 'en-rojo)
+;;; valor devuelto  -> [2026-06-14 00:21:36] la luz ha cambiado de EN-AMARILLO a EN-ROJO
+
 
 ;;; Caso de ejemplo de ERROR / LIMITE:
-;;; valor ingresado -> (registro-de-estados -10 'en-rojo 'en-verde)
-;;; valor devuelto  -> Tiempo -10: la luz ha cambiado de EN-ROJO a EN-VERDE
-;;; (no produce error, pero un timestamp negativo no tiene sentido en el dominio)
+;;; valor ingresado -> (registro-de-estados nil 'en-verde)
+;;; valor devuelto  -> [2026-06-14 00:22:00] la luz ha cambiado de NIL a EN-VERDE
+;;; (no produce error, pero NIL como color anterior es semánticamente inválido)
 
-;;; valor ingresado -> (registro-de-estados 100 nil 'en-verde)
-;;; valor devuelto  -> Tiempo 100: la luz ha cambiado de NIL a EN-VERDE
-;;; (no produce error, pero NIL como "color anterior" es semánticamente inválido)
+
+;;; valor ingresado -> (registro-de-estados 'en-rojo nil)
+;;; valor devuelto  -> [2026-06-14 00:22:10] la luz ha cambiado de EN-ROJO a NIL
+;;; (no produce error, pero NIL como color nuevo es semánticamente inválido)
 
 ;;; ========== REQUERIMIENTO 4: duracion-ciclo / recomendacion-ciclo ==========
 
