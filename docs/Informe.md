@@ -208,7 +208,8 @@ Para finalizar esta 1ra fase, se realizaron las pruebas correspondientes para co
 
 <img width="730" height="441" alt="image" src="https://github.com/user-attachments/assets/5f4a591c-759d-49dc-9202-a7151a21780f" />
 
-<img width="886" height="402" alt="image" src="https://github.com/user-attachments/assets/63768ca9-35a1-4326-bc41-c1bd2319fd71" />
+<img width="551" height="256" alt="image" src="https://github.com/user-attachments/assets/ebf8a3f4-75a9-440b-968c-5ccdd04e1828" />
+
 
 ---
 
