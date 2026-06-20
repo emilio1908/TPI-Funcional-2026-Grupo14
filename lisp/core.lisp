@@ -287,9 +287,9 @@ ejemplos...
 
 ;; ========================================================
 ;; FUNCIÓN: transicion
-;; NATURALEZA: Pura
-;; ESTRATEGIA: Evaluación de transiciones mediante cond
-;; IMPACTO: No destructiva
+;; NATURALEZA: Pura (Dado un color actual y uno nuevo, siempre retorna la misma acción)
+;; ESTRATEGIA: Condicional (Implementada mediante cond y comparaciones con equal)
+;; IMPACTO: No destructiva (Solo describe la transición, sin alterar datos externos)
 ;; ========================================================
 
 (defun transicion (color-actual cambiar-a)
@@ -315,9 +315,9 @@ ejemplos...
 
 ;; ========================================================
 ;; FUNCIÓN: timer
-;; NATURALEZA: Pura
-;; ESTRATEGIA: Condicional mediante cond
-;; IMPACTO: No destructiva
+;; NATURALEZA: Pura (Dado un timestamp, siempre retorna el mismo color del ciclo)
+;; ESTRATEGIA: Implementada mediante let y cond
+;; IMPACTO: No destructiva (Solo calcula el estado del semáforo, sin alterar datos externos)
 ;; ========================================================
 
 (defun timer (timestamp)
@@ -338,9 +338,9 @@ ejemplos...
 
 ;; ========================================================
 ;; FUNCIÓN: registro-de-estados
-;; NATURALEZA: Impura
-;; ESTRATEGIA: Impresión mediante format
-;; IMPACTO: No destructiva
+;; NATURALEZA: Impura (Genera efectos externos al imprimir en consola)
+;; ESTRATEGIA: Implementada mediante format y local-time:format-timestring)
+;; IMPACTO: No destructiva (Solo registra cambios de estado, no altera datos internos)
 ;; ========================================================
 
 (defun registro-de-estados (color-anterior color-nuevo)
