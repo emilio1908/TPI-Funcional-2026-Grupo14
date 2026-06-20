@@ -194,6 +194,21 @@ En la 2da iteración, además de agregar los 9 seg de intermitencia en la variab
 La función fue clasificada como:
 <img width="874" height="213" alt="image" src="https://github.com/user-attachments/assets/c6bb5fb1-e923-4cfd-ad49-eab018f1561c" />
 
+## Requerimiento 7: Aseguramiento de la calidad
+
+Para finalizar esta 1ra fase, se realizaron las pruebas correspondientes para comprobar el funcionamiento correcto de cada función, a continuación se muestran ejemplos teniendo en cuenta que pueden haber 3 caminos posibles: (normales, alternativos y casos de errores):
+ 
+<img width="664" height="633" alt="image" src="https://github.com/user-attachments/assets/f49fbf8b-6255-4630-9bf5-2aade043d8da" />
+
+<img width="875" height="536" alt="image" src="https://github.com/user-attachments/assets/142f74ba-f86c-4e8c-ad1f-a77a87bd0c1d" />
+
+<img width="883" height="694" alt="image" src="https://github.com/user-attachments/assets/630b726d-c28a-4284-93b5-a2ea30dd90db" />
+
+<img width="886" height="377" alt="image" src="https://github.com/user-attachments/assets/8897bbb6-689a-48e6-94c5-7ba588162576" />
+
+<img width="730" height="441" alt="image" src="https://github.com/user-attachments/assets/5f4a591c-759d-49dc-9202-a7151a21780f" />
+
+<img width="886" height="402" alt="image" src="https://github.com/user-attachments/assets/63768ca9-35a1-4326-bc41-c1bd2319fd71" />
 
 ---
 
