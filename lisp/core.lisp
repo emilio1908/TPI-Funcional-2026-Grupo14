@@ -382,7 +382,7 @@
 
 (defun duracion-ciclo (segundos)
   (let ((duracion-ciclo-total (+ 90 6 120 9))) ; ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg - INTERMITENCIA: 9s
-    (list (floor segundos duracion-ciclo-total) ; número de ciclos completos sobre el total del ciclo 
+    (abs (floor segundos duracion-ciclo-total) ; número de ciclos completos sobre el total del ciclo 
           (recomendacion-ciclo segundos) ; recomendación sobre la duración
     )
   )
