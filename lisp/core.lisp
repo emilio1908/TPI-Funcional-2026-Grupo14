@@ -1,5 +1,5 @@
 ;;;; 
-***************************************************
+;***************************************************
 ;;;; Fichero: core.lisp 
 ;;;; Fecha-de-creación: 01/06/2026 
 ;;;; Proyeco: TRABAJO PRACTICO INTEGRADOR
@@ -13,7 +13,7 @@
 ;;;;   - Frias, Juan Gabriel
 ;;;;  Universidad Nacional del Nordeste (UNNE)
 ;;;; 
-***************************************************
+;***************************************************
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Requerimiento 1: Estados de Transición
@@ -209,25 +209,25 @@ ejemplos...
 ;;; valor devuelto  -> *** - SYSTEM::READ-EVAL-PRINT: variable HOLA has no value
 
 
-;;; ========== REQUERIMIENTO 3: registrar-cambio ==========
+;;; ========== REQUERIMIENTO 3: registro-de-estados ==========
 
 ;;; Funcionamiento NORMAL:
-;;; valor ingresado -> (registrar-cambio 90 'en-rojo 'en-verde)
+;;; valor ingresado -> (registro-de-estados 90 'en-rojo 'en-verde)
 ;;; valor devuelto  -> Tiempo 90: la luz ha cambiado de EN-ROJO a EN-VERDE
 
 ;;; Funcionamiento con camino ALTERNATIVO:
-;;; valor ingresado -> (registrar-cambio 10000 'en-rojo 'en-verde)
+;;; valor ingresado -> (registro-de-estados 10000 'en-rojo 'en-verde)
 ;;; valor devuelto  -> Tiempo 10000: la luz ha cambiado de EN-ROJO a EN-VERDE
 
-;;; valor ingresado -> (registrar-cambio 90.5 'en-rojo 'en-verde)
+;;; valor ingresado -> (registro-de-estados 90.5 'en-rojo 'en-verde)
 ;;; valor devuelto  -> Tiempo 90.5: la luz ha cambiado de EN-ROJO a EN-VERDE
 
 ;;; Caso de ejemplo de ERROR / LIMITE:
-;;; valor ingresado -> (registrar-cambio -10 'en-rojo 'en-verde)
+;;; valor ingresado -> (registro-de-estados -10 'en-rojo 'en-verde)
 ;;; valor devuelto  -> Tiempo -10: la luz ha cambiado de EN-ROJO a EN-VERDE
 ;;; (no produce error, pero un timestamp negativo no tiene sentido en el dominio)
 
-;;; valor ingresado -> (registrar-cambio 100 nil 'en-verde)
+;;; valor ingresado -> (registro-de-estados 100 nil 'en-verde)
 ;;; valor devuelto  -> Tiempo 100: la luz ha cambiado de NIL a EN-VERDE
 ;;; (no produce error, pero NIL como "color anterior" es semánticamente inválido)
 
@@ -263,24 +263,24 @@ ejemplos...
 ;;; ========== REQUERIMIENTO 6: distribucion_porcentual ==========
 
 ;;; Funcionamiento NORMAL:
-;;; valor ingresado -> (distribucion_porcentual 90 6 120)
+;;; valor ingresado -> (distribucion_porcentual)
 ;;; valor devuelto  -> ((EN-ROJO 41.666664) (EN-AMARILLO 2.7777777) (EN-VERDE 55.55556))
 
 ;;; Funcionamiento con camino ALTERNATIVO:
-;;; valor ingresado -> (distribucion_porcentual 72 72 72)
-;;; valor devuelto  -> ((EN-ROJO 33.333332) (EN-AMARILLO 33.333332) (EN-VERDE 33.333332))
+;;; No lo tendra ya que tiene valores fijos, es decir, no recibe parametros o variables externas
+;;; a la funcion que alteren su resutado. 
 
 ;;; Caso de ejemplo de ERROR:
-;;; valor ingresado -> (distribucion_porcentual 0 0 0)
-;;; valor devuelto  -> *** - DIVISION-BY-ZERO
+;;; valor ingresado -> (distribucion_porcentual 90 6 120)
+;;; valor devuelto  -> *** - EVAL/APPLY: se han entregado demasiados argumentos a DISTRIBUCION_PORCENTUAL
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
------------------------------------------------------
-******************** ITERACION 2 ********************
------------------------------------------------------
+;-----------------------------------------------------
+;******************** ITERACION 2 ********************
+;-----------------------------------------------------
 ; Extensión 1: Intermitencia de Seguridad
 
 ; Requerimiento 1: Estados de Transición
@@ -411,7 +411,7 @@ ejemplos...
 
 (defun ciclos-por-tiempo(minutos)
   (let ((duracion-ciclo-total (+ 90 6 120 9))) ; ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg - INTERMITENCIA: 9s
-      (list (floor (* minutos 60) duracion-ciclo-total))
+       (abs (floor (* minutos 60) duracion-ciclo-total))
   )
 )
 
