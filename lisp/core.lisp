@@ -168,7 +168,7 @@
 ; El equipo de control de calidad ha solicitado que para cada uno de los requerimientos anteriores deberá proveer ejemplos de uso que demuestren el funcionamiento normal, ejemplos de 
 ; caminos alternativos (si los hubiere) y ejemplos que generan errores. A sabiendas de que el equipo ejecutará lo indicado, copiando y pegando.
 
-ejemplos...
+; ejemplos...
 
 ;;; ========== REQUERIMIENTO 1: transicion ==========
 
@@ -212,7 +212,7 @@ ejemplos...
 ;;; ========== REQUERIMIENTO 3: registro-de-estados ==========
 
 ;;; Funcionamiento NORMAL:
-;;; valor ingresado -> (registro-de-estados 90 'en-rojo 'en-verde)
+;;; valor ingresado -> (registro-de-estados 'en-rojo 'en-verde)
 ;;; valor devuelto  -> Tiempo 90: la luz ha cambiado de EN-ROJO a EN-VERDE
 
 ;;; Funcionamiento con camino ALTERNATIVO:
