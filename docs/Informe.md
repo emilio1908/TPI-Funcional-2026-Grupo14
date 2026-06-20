@@ -332,14 +332,6 @@ Instalar y cargar la librería antes de ejecutar el sistema.
 
 ---
 
-# Informe Técnico Analítico
-
-> Integrantes — Grupo 14 (UNNE): Gaitán Pereyra Julio Emilio · Gabaldo Zdanovicz Matías Nahuel · Bonessi Luis María · Rojas Ruth · Frias Juan Gabriel.
-
-*Las secciones de Fase 1 y Fase 2 se encuentran aún en proceso.*
-
----
-
 # Fase 3 — Estudio Comparativo: Common Lisp vs. Clojure
 
 **Lenguaje asignado:** Clojure.
