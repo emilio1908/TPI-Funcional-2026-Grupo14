@@ -61,12 +61,8 @@ Posteriormente se desarrolló una segunda iteración incorporando el estado:
 Esto permitió representar de manera más realista las transiciones entre colores.
 
 La función fue clasificada como:
+<img width="886" height="193" alt="image" src="https://github.com/user-attachments/assets/aba9fb0e-0706-4fa1-b648-e259508e6a13" />
 
-* **Naturaleza:** Pura.
-* **Estrategia:** Evaluación mediante `cond`.
-* **Impacto:** No destructiva.
-
----
 
 ## Requerimiento 2 — Temporizador Automático
 
@@ -80,7 +76,16 @@ La lógica se basa en el uso de la operación:
 
 que permite reutilizar indefinidamente el mismo ciclo temporal.
 
-La segunda iteración del proyecto contempla:
+
+La 1ra iteración del proyecto contempla: Duración total del ciclo: 216 segundos
+
+| Estado       | Duración     |
+| ------------ | ------------ |
+| Rojo         | 90 segundos  |
+| Verde        | 120 segundos |
+| Amarillo     | 6 segundos   |
+
+En la 2da iteración se agregan al ciclo, las transiciones de intermitencia, por lo cual la duración total del ciclo ahora será de 225 segundos:
 
 | Estado       | Duración     |
 | ------------ | ------------ |
@@ -91,13 +96,9 @@ La segunda iteración del proyecto contempla:
 | Amarillo     | 6 segundos   |
 | Intermitente | 3 segundos   |
 
-Duración total del ciclo:
+La función fue clasificada como:
+<img width="886" height="201" alt="image" src="https://github.com/user-attachments/assets/b8782bb6-8625-4c16-9b1e-d112831510e3" />
 
-```text
-225 segundos
-```
-
----
 
 ## Requerimiento 3 — Sistema de Auditoría
 
@@ -119,15 +120,15 @@ Ejemplo:
 ```
 
 Esta función es la única clasificada como **impura**, ya que genera salida por pantalla.
+<img width="942" height="211" alt="image" src="https://github.com/user-attachments/assets/dab4e6cb-3868-475e-9f4a-1c92908893c6" />
 
----
 
 ## Requerimiento 4 — Análisis de Ciclos Semafóricos
 
 Se desarrollaron las funciones:
 
-* `duracion-ciclo`
-* `recomendacion-ciclo`
+a) `duracion-ciclo`
+b) `recomendacion-ciclo`
 
 Estas permiten calcular la cantidad de ciclos completos y emitir recomendaciones según las reglas de negocio establecidas.
 
@@ -137,7 +138,14 @@ La consigna establece que:
 * Ciclos mayores a 150 segundos son considerados demasiado largos.
 * Los ciclos comprendidos entre ambos valores son considerados óptimos.
 
----
+En la 2da iteración, el único cambio realizado fue en la variable local de la función “duración-ciclo”, donde se agregó la cantidad de seg en total de intermitencia, alterando a sí mismo el valor final de lo que es un ciclo completo.
+
+Las funciones fueron clasificadas como:
+4-a:
+<img width="886" height="168" alt="image" src="https://github.com/user-attachments/assets/da858737-a807-4460-a523-3fb06100155a" />
+4-b:
+<img width="886" height="179" alt="image" src="https://github.com/user-attachments/assets/9ec80878-470e-4f79-b30e-b0586060acd2" />
+
 
 ## Requerimiento 5 — Planificación Temporal
 
@@ -156,6 +164,9 @@ Resultado:
 ```text
 8 ciclos completos
 ```
+La función fue clasificada como:
+<img width="886" height="195" alt="image" src="https://github.com/user-attachments/assets/df082ff9-7f0d-4c86-993d-75eb4a4f3ac9" />
+
 
 ---
 
@@ -178,6 +189,11 @@ La función devuelve una lista con los porcentajes asociados a:
 * Intermitente.
 
 Esta solución mantiene la filosofía funcional del proyecto al evitar modificaciones de estructuras existentes.
+
+En la 2da iteración, además de agregar los 9 seg de intermitencia en la variable local, también lo agregamos en la lista que recibe mapcar, impactando asi en el resultado de los porcentajes sobre lo que será la duración total de ciclos en una hora.
+La función fue clasificada como:
+<img width="874" height="213" alt="image" src="https://github.com/user-attachments/assets/c6bb5fb1-e923-4cfd-ad49-eab018f1561c" />
+
 
 ---
 
