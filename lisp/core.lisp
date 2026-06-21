@@ -157,8 +157,8 @@
         ))
     (list
       (list 'en-rojo     (first porcentajes))
-      (list 'en-amarillo (second porcentajes))
-      (list 'en-verde    (third porcentajes))
+      (list 'en-verde (second porcentajes))
+      (list 'en-amarillo    (third porcentajes))
     )
   )
 )
@@ -266,14 +266,14 @@
 
 ;;; Funcionamiento NORMAL:
 ;;; valor ingresado -> (distribucion_porcentual)
-;;; valor devuelto  -> ((EN-ROJO 41.666664) (EN-AMARILLO 2.7777777) (EN-VERDE 55.55556))
+;;; valor devuelto  -> ((EN-ROJO 41.666664) (EN-VERDE 55.55556) (EN-AMARILLO 2.7777777))
 
 ;;; Funcionamiento con camino ALTERNATIVO:
 ;;; No lo tendra ya que tiene valores fijos, es decir, no recibe parametros o variables externas
 ;;; a la funcion que alteren su resutado. 
 
 ;;; Caso de ejemplo de ERROR:
-;;; valor ingresado -> (distribucion_porcentual 90 6 120)
+;;; valor ingresado -> (distribucion_porcentual 90 120 6)
 ;;; valor devuelto  -> *** - EVAL/APPLY: se han entregado demasiados argumentos a DISTRIBUCION_PORCENTUAL
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -438,8 +438,8 @@
         ))
     (list
       (list 'en-rojo     (first porcentajes))
-      (list 'en-amarillo (second porcentajes))
-      (list 'en-verde    (third porcentajes))
+      (list 'en-verde (second porcentajes))
+      (list 'en-amarillo    (third porcentajes))
       (list 'en-intermitente (fourth porcentajes))
     )
   )
