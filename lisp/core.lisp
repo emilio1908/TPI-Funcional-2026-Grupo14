@@ -99,7 +99,7 @@
 ;; ========================================================
   
 (defun duracion-ciclo (segundos)
-  (let ((duracion-ciclo-total (+ 90 6 120))) ; ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg
+  (let ((duracion-ciclo-total (+ 90 120 6))) ; ROJO: 90seg - VERDE: 120seg - AMARILLO: 6seg 
     (list (abs (floor segundos duracion-ciclo-total)) ; número de ciclos completos sobre el total del ciclo 
           (recomendacion-ciclo segundos) ; recomendación sobre la duración
     )
@@ -116,7 +116,7 @@
 (defun recomendacion-ciclo (duracion)
   (cond
     ((and (integerp duracion) (< duracion 35)) (list "Rango NO-optimo:" 'ciclo-corto "recomendacion:" 'aumentar-duracion))
-    ((and (integerp duracion) (> duracion 150)) (list "Rango NO-optimo:" 'ciclo-largo "recomendacion:" 'aumentar-duracion))
+    ((and (integerp duracion) (> duracion 150)) (list "Rango NO-optimo:" 'ciclo-largo "recomendacion:" 'disminuir-duracion))
     ((integerp duracion) (list "Rango Optimo" "recomendacion:" 'Ninguna))
   )
 )
@@ -132,7 +132,7 @@
 ;; ========================================================
 
 (defun ciclos-por-tiempo(minutos)
-  (let ((duracion-ciclo-total (+ 90 6 120))) ; ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg
+  (let ((duracion-ciclo-total (+ 90 120 6))) ; ROJO: 90seg - VERDE: 120seg - AMARILLO: 6seg 
       (abs (floor (* minutos 60) duracion-ciclo-total))
   )
 )
@@ -148,12 +148,12 @@
 ;; ========================================================
 (defun distribucion_porcentual ()
   
-  (let* ((duracion-ciclo-total (+ 90 6 120)) ; variable 1: ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg
+  (let* ((duracion-ciclo-total (+ 90 120 6)) ; variable 1: ROJO: 90seg - VERDE: 120seg - AMARILLO: 6seg 
 
         (duracion-en-una-hora (* 3600 duracion-ciclo-total)) ; variable 2: calcula la duracion total del ciclo completo en una hora. "Devuelve el total en seg".
 
         (porcentajes (mapcar (lambda (d) (* (float (/ (* d 3600) duracion-en-una-hora)) 100)) ; variable 3: calcula porcentajes de cada color del ciclo en una hora.
-                      (list 90 6 120))
+                      (list 90 120 6))
         ))
     (list
       (list 'en-rojo     (first porcentajes))
@@ -379,7 +379,7 @@
 ;; ========================================================
 
 (defun duracion-ciclo (segundos)
-  (let ((duracion-ciclo-total (+ 90 6 120 9))) ; ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg - INTERMITENCIA: 9s
+  (let ((duracion-ciclo-total (+ 90 120 6 9))) ; ROJO: 90seg - VERDE: 120seg - AMARILLO: 6seg - INTERMITENCIA: 9s
     (abs (floor segundos duracion-ciclo-total) ; número de ciclos completos sobre el total del ciclo 
           (recomendacion-ciclo segundos) ; recomendación sobre la duración
     )
@@ -396,7 +396,7 @@
 (defun recomendacion-ciclo (duracion)
   (cond
     ((and (integerp duracion) (< duracion 35)) (list "Rango NO-optimo:" 'ciclo-corto "recomendacion:" 'aumentar-duracion))
-    ((and (integerp duracion) (> duracion 150)) (list "Rango NO-optimo:" 'ciclo-largo "recomendacion:" 'aumentar-duracion))
+    ((and (integerp duracion) (> duracion 150)) (list "Rango NO-optimo:" 'ciclo-largo "recomendacion:" 'disminuir-duracion))
     ((integerp duracion) (list "Rango Optimo" "recomendacion:" 'Ninguna))
   )
 )
@@ -412,7 +412,7 @@
 ;; ========================================================
 
 (defun ciclos-por-tiempo(minutos)
-  (let ((duracion-ciclo-total (+ 90 6 120 9))) ; ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg - INTERMITENCIA: 9s
+  (let ((duracion-ciclo-total (+ 90 120 6 9))) ; ROJO: 90seg - VERDE: 120seg - AMARILLO: 6seg - INTERMITENCIA: 9s
        (abs (floor (* minutos 60) duracion-ciclo-total))
   )
 )
@@ -429,12 +429,12 @@
 
 (defun distribucion_porcentual ()
   
-  (let* ((duracion-ciclo-total (+ 90 6 120 9)) ; variable 1: ROJO: 90seg - AMARILLO: 6seg - VERDE: 120seg - INTERMITENCIA: 9s
+  (let* ((duracion-ciclo-total (+ 90 120 6 9)) ; variable 1: ROJO: 90seg - VERDE: 120seg - AMARILLO: 6seg - INTERMITENCIA: 9s
 
         (duracion-en-una-hora (* 3600 duracion-ciclo-total)) ; variable 2: calcula la duracion total del ciclo completo en una hora. "Devuelve el total en seg".
 
         (porcentajes (mapcar (lambda (d) (* (float (/ (* d 3600) duracion-en-una-hora)) 100)) ; variable 3: calcula porcentajes de cada color del ciclo en una hora.
-                      (list 90 6 120 9))
+                      (list 90 120 6 9))
         ))
     (list
       (list 'en-rojo     (first porcentajes))
