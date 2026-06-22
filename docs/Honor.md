@@ -39,7 +39,7 @@ Redacción del Informe y Respuestas Teóricas ● [X] Autoría Propia: Las expli
 
 Declaración Jurada: Al subir este archivo al repositorio, declaro bajo compromiso de honor que las marcas anteriores reflejan fielmente mi participación y la naturaleza del desarrollo de este trabajo práctico. Entiendo que la cátedra cruzará esta declaración con la correcta clasificación en comentarios del código y con mi desempeño en la defensa oral/video
 
-## 👤 Integrante 5: Frias Juan Gabriel - Usuario GitHub: @JuanGabrielFrias
+## 👤 Integrante 5: Frias Juan Gabriel - Usuario GitHub: @juangabriel1012
 
 1. Código en Common Lisp (Fase 1 y 2)
 
