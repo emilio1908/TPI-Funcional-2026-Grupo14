@@ -38,3 +38,31 @@ Código del Lenguaje Asignado (Fase 3) ● [ ] Desarrollo 100% Humano: Aprendí 
 Redacción del Informe y Respuestas Teóricas ● [X] Autoría Propia: Las explicaciones de los conceptos de los lenguajes y el análisis comparativo reflejan nuestras propias conclusiones conceptuales. ● [ ] Redacción Asistida / Generada: La IA redactó o fundamentó las respuestas teóricas basadas en indicaciones conceptuales proporcionadas por el grupo. ● [ ] Generación completa por IA
 
 Declaración Jurada: Al subir este archivo al repositorio, declaro bajo compromiso de honor que las marcas anteriores reflejan fielmente mi participación y la naturaleza del desarrollo de este trabajo práctico. Entiendo que la cátedra cruzará esta declaración con la correcta clasificación en comentarios del código y con mi desempeño en la defensa oral/video
+
+## 👤 Integrante 5: Frias Juan Gabriel - Usuario GitHub: @JuanGabrielFrias
+
+1. Código en Common Lisp (Fase 1 y 2)
+
+● [ ] Desarrollo 100% Humano: El código fue diseñado, escrito y depurado puramente por mí/el grupo sin intervención de IA.
+● [X] Asistencia de IA (Co-piloto): Utilicé IA como apoyo para comprender conceptos, depurar errores y resolver dudas sobre la sintaxis y funcionamiento de Common Lisp, mientras que la lógica del sistema fue desarrollada por el grupo.
+● [ ] Generación Completa por IA: Un modelo de IA generó bloques enteros o la totalidad de las funciones principales a partir del enunciado base.
+
+2. Código del Lenguaje Asignado (Fase 3)
+
+● [ ] Desarrollo 100% Humano: Aprendí la sintaxis básica, clasifiqué sus componentes y escribí la solución de forma autónoma.
+● [X] Asistencia de IA: Utilicé IA para comprender diferencias entre Common Lisp y Clojure, interpretar la sintaxis y colaborar en la adaptación y análisis del código.
+● [ ] Generación Completa por IA: La IA realizó la traducción automática de las funciones transicion y timer.
+
+3. Redacción del Informe y Respuestas Teóricas
+
+● [ ] Autoría Propia: Las explicaciones de los conceptos de los lenguajes y el análisis comparativo reflejan exclusivamente conclusiones redactadas sin asistencia externa.
+● [X] Redacción Asistida / Generada: Utilicé IA como apoyo para estructurar, corregir y mejorar la redacción del informe, así como para organizar la presentación comparativa entre Common Lisp y Clojure.
+● [ ] Generación completa por IA
+
+4. Elaboración del Material Audiovisual
+
+Participé principalmente en la preparación del material audiovisual del proyecto, incluyendo la elaboración del guion de presentación, la organización del contenido para el video, la generación de recursos visuales y la preparación de la defensa oral.
+
+Declaración Jurada
+
+Al subir este archivo al repositorio, declaro bajo compromiso de honor que las marcas anteriores reflejan fielmente mi participación y la naturaleza del desarrollo de este trabajo práctico. Entiendo que la cátedra cruzará esta declaración con la correcta clasificación en comentarios del código y con mi desempeño en la defensa oral/video.
